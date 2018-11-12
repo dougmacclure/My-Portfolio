@@ -1,0 +1,43 @@
+1                : 1 	100              : 1 	a                : 8 	
+about            : 4 	absorb           : 1 	and              : 2 	
+another          : 1 	any              : 1 	are              : 2 	
+as               : 1 	at               : 1 	available        : 1 	
+be               : 1 	because          : 1 	become           : 2 	
+best             : 1 	book             : 4 	bring            : 1 	
+c                : 6 	called           : 1 	can              : 2 	
+causing          : 1 	change           : 1 	chip             : 1 	
+choice           : 1 	comma            : 1 	computer         : 3 	
+content          : 1 	damage           : 1 	deliberately     : 1 	
+design           : 1 	devoted          : 1 	do               : 1 	
+encouraged       : 1 	enjoy            : 1 	etc              : 1 	
+expand           : 1 	experiment       : 1 	exposed          : 1 	
+fabrication      : 1 	familiar         : 1 	familiarity      : 1 	
+fingertips       : 1 	for              : 2 	forget           : 1 	
+games            : 1 	get              : 1 	greater          : 1 	
+have             : 2 	having           : 1 	heart            : 1 	
+help             : 1 	however          : 1 	if               : 3 	
+illustrated      : 1 	in               : 4 	increase         : 1 	
+involved         : 1 	is               : 6 	it               : 5 	
+just             : 1 	keywords         : 1 	knowledge        : 1 	
+language         : 5 	learn            : 1 	made             : 1 	
+more             : 2 	most             : 1 	not              : 1 	
+of               : 2 	omit             : 1 	on               : 1 	
+one              : 2 	or               : 2 	over             : 1 	
+period           : 1 	play             : 1 	preface          : 1 	
+preferably       : 1 	processing       : 1 	proficient       : 1 	
+programming      : 1 	programs         : 2 	quite            : 1 	
+read             : 1 	required         : 1 	secrets          : 1 	
+seeking          : 1 	semicolon        : 1 	simply           : 1 	
+speed            : 1 	statement        : 1 	such             : 1 	
+terminal         : 1 	terminate        : 1 	text             : 1 	
+that             : 1 	the              : 11	then             : 1 	
+thing            : 1 	this             : 5 	thoroughly       : 1 	
+time             : 1 	to               : 15	typing           : 1 	
+understand       : 1 	understanding    : 1 	want             : 2 	
+way              : 1 	well             : 1 	what             : 1 	
+whatever         : 1 	will             : 3 	wise             : 1 	
+with             : 5 	without          : 1 	word             : 1 	
+worry            : 1 	you              : 14	your             : 3 	
+
+no of words in input stream : 219
+no of words in output list  : 120

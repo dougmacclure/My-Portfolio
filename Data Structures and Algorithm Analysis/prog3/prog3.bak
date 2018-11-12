@@ -1,0 +1,55 @@
+#include "/home/onyuksel/courses/340/progs/13s/p3/prog3.h"
+
+using namespace std;
+
+class fillVec
+{
+int count;
+public:
+fillVec(const int &x = 2):count(x){}
+void operator()(int &v)
+	{
+	v = count;
+	count++;
+	}
+};
+
+
+int main()
+{
+
+//initialize input variable and fillVec object
+int upperLimit;
+fillVec fv;
+
+//prompt user for the upper limit of the range of integers on
+//which we utilize the sieve of eratosthenes
+cout << "Enter the upper limit for the set of primes: ";
+cin >> upperLimit;
+cout << endl;
+
+//create a vector of upperLimit 0's in order to be able to
+
+//vector<int> v(upperLimit - 1);
+
+//for_each(v.begin(), v.end(), fv);
+
+
+//set<int> primeSet(v.begin(), v.end());
+
+set<int> primeSet;
+for(int i = 2; i < upperLimit; i++)
+
+	primeSet.insert(i);
+
+
+sieve(primeSet, upperLimit);
+print_primes(primeSet);
+return 0;
+}
+
+
+
+
+
+
