@@ -39,4 +39,14 @@ and provide various metrics on the words contained in the input.
 9) Program 3  - Uses a seive algorithm to display all primes up to the integer N, which is given by the user.
 10) Program 2 - Sorts random integers based on linear and binary searches and compares percent of successful searches.
 
- 
+# Code For Fractal Diagrams
+
+This code was written in Python 2.7 with weave.inline (for including C++ code to speed up computations) for research purposes.  
+
+# MATLAB Code
+
+Various MATLAB projects are included, including an LU-decomposition algorithm, Newton's Method and Extended Secant Method for finding the zeros of a function, and various other projects.  
+
+#Intermediate C++ Programs
+
+
