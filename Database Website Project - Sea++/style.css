@@ -1,0 +1,85 @@
+body {
+	background : url('Luxury-Cruise-Ships-Adventure-of-the-Seas-Royal-Caribbean-International-1920x2560.jpg') no-repeat center center fixed;
+	background-size : cover;
+}
+
+col {
+	width : 15%;
+}
+
+hr {
+	size : 2;
+	width : 100%;
+}
+
+h1 {
+	text-align : center;
+	color : #090974;
+}
+
+a:link {
+	color : #0000EE;
+}
+
+a:visited {
+	color : #551A8B;
+}
+
+a:active {
+	color : #EE0000;
+}
+
+.main_button {
+	background-color : #fff273;
+	color : #a65f00;
+	
+	vertical-align : top;
+}
+
+#head {
+	width : 98%;
+	position : fixed;
+	top : 0%;
+	left : 1%;
+	right : 1%;
+	
+	background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(89,148,202,1) 62%, rgba(95,154,207,0.7) 68%, rgba(125,185,232,0) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(30,87,153,1)), color-stop(62%,rgba(89,148,202,1)), color-stop(68%,rgba(95,154,207,0.7)), color-stop(100%,rgba(125,185,232,0))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(89,148,202,1) 62%,rgba(95,154,207,0.7) 68%,rgba(125,185,232,0) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(89,148,202,1) 62%,rgba(95,154,207,0.7) 68%,rgba(125,185,232,0) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(89,148,202,1) 62%,rgba(95,154,207,0.7) 68%,rgba(125,185,232,0) 100%); /* IE10+ */
+	background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(89,148,202,1) 62%,rgba(95,154,207,0.7) 68%,rgba(125,185,232,0) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
+}
+
+#home{
+	width : 80%;
+	margin : 200px 10% 0% 10%;
+	float : right;
+	vertical-align : top;
+	
+	color : white;
+    text-shadow :
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+#home_back {
+	background : -moz-linear-gradient(left, rgba(30,45,154,0) 0%, rgba(30,45,154,0.8) 15%, rgba(30,45,154,1) 19%, rgba(30,45,154,1) 20%, rgba(42,77,216,1) 50%, rgba(30,45,154,1) 80%, rgba(30,45,154,1) 81%, rgba(30,45,154,0.8) 85%, rgba(30,45,154,0) 100%); /* FF3.6+ */
+	background : -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(30,45,154,0)), color-stop(15%,rgba(30,45,154,0.8)), color-stop(19%,rgba(30,45,154,1)), color-stop(20%,rgba(30,45,154,1)), color-stop(50%,rgba(42,77,216,1)), color-stop(80%,rgba(30,45,154,1)), color-stop(81%,rgba(30,45,154,1)), color-stop(85%,rgba(30,45,154,0.8)), color-stop(100%,rgba(30,45,154,0))); /* Chrome,Safari4+ */
+	background : -webkit-linear-gradient(left, rgba(30,45,154,0) 0%,rgba(30,45,154,0.8) 15%,rgba(30,45,154,1) 19%,rgba(30,45,154,1) 20%,rgba(42,77,216,1) 50%,rgba(30,45,154,1) 80%,rgba(30,45,154,1) 81%,rgba(30,45,154,0.8) 85%,rgba(30,45,154,0) 100%); /* Chrome10+,Safari5.1+ */
+	background : -o-linear-gradient(left, rgba(30,45,154,0) 0%,rgba(30,45,154,0.8) 15%,rgba(30,45,154,1) 19%,rgba(30,45,154,1) 20%,rgba(42,77,216,1) 50%,rgba(30,45,154,1) 80%,rgba(30,45,154,1) 81%,rgba(30,45,154,0.8) 85%,rgba(30,45,154,0) 100%); /* Opera 11.10+ */
+	background : -ms-linear-gradient(left, rgba(30,45,154,0) 0%,rgba(30,45,154,0.8) 15%,rgba(30,45,154,1) 19%,rgba(30,45,154,1) 20%,rgba(42,77,216,1) 50%,rgba(30,45,154,1) 80%,rgba(30,45,154,1) 81%,rgba(30,45,154,0.8) 85%,rgba(30,45,154,0) 100%); /* IE10+ */
+	background : linear-gradient(to right, rgba(30,45,154,0) 0%,rgba(30,45,154,0.8) 15%,rgba(30,45,154,1) 19%,rgba(30,45,154,1) 20%,rgba(42,77,216,1) 50%,rgba(30,45,154,1) 80%,rgba(30,45,154,1) 81%,rgba(30,45,154,0.8) 85%,rgba(30,45,154,0) 100%); /* W3C */
+	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#001e2d9a', endColorstr='#001e2d9a',GradientType=1 ); /* IE6-9 */
+}
+
+#main_buttons {
+	border-spacing : 2;
+	padding : 2;
+	
+	height : 25%;
+	width : 100%;
+}

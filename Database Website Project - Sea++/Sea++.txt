@@ -1,0 +1,630 @@
+use z0125061;
+
+
+
+drop table CreditCard;
+
+drop table Guest;
+
+drop table CabinRes;
+
+drop table ExcursRes;
+
+drop table Customer;
+
+drop table Amenity;
+
+drop table Excursion;
+
+drop table Cabin;
+
+drop table Cruise;
+
+drop table Port;
+
+drop table Address;
+
+drop table Ship;
+
+
+
+create table Address(
+
+       AddrID char(9) primary key,
+
+       Street char(20),
+
+       City char(20),
+
+       ST char(2),
+
+       ZIP char(5),
+
+       Country char(20))
+
+ENGINE = INNODB;
+
+
+create table Ship(
+
+       ShipID char(4) primary key,
+
+       ShipName char(20),
+
+       CaptainName char(20),
+
+       YearBuilt char(4),
+
+       Price decimal(15, 2))
+
+ENGINE = INNODB;
+
+
+create table Port(
+
+       PortID char(4) primary key,
+
+       Name char(40),
+
+       City char(20),
+
+       ST char(20),
+
+       Country char(20))
+
+ENGINE = INNODB;
+
+
+create table Cruise(
+
+       CruiseID char(7) primary key,
+
+       ShipID char(4) not null,
+
+       DepartDate char(10),
+
+       DepartPortID char(4) not null,
+
+       DestPortID char(4) not null,
+
+       DestDate char(10),
+
+       foreign key(ShipID)
+
+               references Ship(ShipID),
+
+       foreign key(DepartPortID)
+
+               references Port(PortID),
+
+       foreign key(DestPortID)
+
+               references Port(PortID))
+
+ENGINE = INNODB;
+
+
+create table Cabin(
+
+       CabinID char(7) primary key,
+
+       ShipID char(4) not null,
+
+       CabinType char(10),
+
+       Price decimal(7, 2),
+
+       Capacity char(1),
+
+       Handicapped char(1),
+
+       foreign key(ShipID)
+
+               references Ship(ShipID))
+
+ENGINE = INNODB;
+
+
+create table Excursion(
+
+       ExcursionID char(7) primary key,
+
+       ExcursionDesc char(40),
+
+       PortID char(4) not null,
+
+       Price decimal(9, 2),
+
+       foreign key (PortID)
+
+               references Port(PortID))
+
+ENGINE = INNODB;
+
+
+create table Amenity(
+
+       AmenityName char(20) primary key,
+
+       ShipID char(4) not null,
+
+        AmenityDesc char(40),
+
+       foreign key (ShipID)
+
+references Ship(ShipID))
+
+ENGINE = INNODB;
+
+
+create table Customer(
+
+       FreqCruisNumber char(7),
+
+       AddrID char(9),
+
+       Name char(20),
+
+       Phone char(10),
+
+       Email char(40),
+
+       DateOfBirth char(10),
+
+       EmergContInfo char(40),
+
+       primary key(FreqCruisNumber, AddrID),
+
+      foreign key(AddrID)
+
+               references Address(AddrID))
+
+ENGINE = INNODB;
+
+
+create table CabinRes(
+
+       FreqCruisNumber char(7),
+
+       CabinID char(7),
+
+       Date char(10),
+
+       ShipID char(4),
+
+       primary key(FreqCruisNumber, CabinID, Date, ShipID),
+
+       foreign key(FreqCruisNumber)
+
+               references Customer(FreqCruisNumber),
+
+       foreign key(CabinID)
+
+               references Cabin(CabinID),
+
+       foreign key(ShipID)
+
+               references Ship(ShipID))
+
+ENGINE = INNODB;
+
+
+create table ExcursRes(
+
+       FreqCruisNumber char(7),
+
+       ExcursionID char(7),
+
+       Date char(10),
+
+       NumPplInGroup char(3),
+
+       primary key(FreqCruisNumber, ExcursionID, Date),
+
+       foreign key(FreqCruisNumber)
+
+               references Customer(FreqCruisNumber),
+
+       foreign key(ExcursionID)
+
+               references Excursion(ExcursionID))
+
+ENGINE = INNODB;
+
+
+create table Guest(
+
+       GuestID char(7) primary key,
+
+       FreqCruisNumber char(7) not null,
+
+       FName char(20),
+
+       LName char(20),
+
+       email char(40),
+
+       CruiseID char(7) not null,
+
+       CabinID char(7) not null,
+
+       foreign key(FreqCruisNumber)
+
+               references Customer(FreqCruisNumber),
+
+       foreign key(CruiseID)
+
+               references Cruise(CruiseID),
+
+       foreign key(CabinID)
+
+               references Cabin(CabinID))
+
+ENGINE = INNODB;
+
+
+create table CreditCard(
+
+       CreditCardNumber char(20) primary key,
+
+       CreditCardCo char(20),
+
+       FreqCruisNumber char(7) not null,
+
+       ExpDate char(10),
+
+       CCV char(4),
+
+       foreign key(FreqCruisNumber)
+
+               references Customer(FreqCruisNumber))
+
+ENGINE = INNODB;
+
+
+
+
+insert into Address values
+
+       ("000000000", "333 Fake St.", "Fakecity", "IL", "60660", "USA");
+
+insert into Address values
+
+       ("111111111", "11 Main St.", "Maintown", "IL", "61111", "USA");
+
+insert into Address values
+
+       ("222222222", "234 State St.", "Rockford", "IL", "60013", "USA");
+
+insert into Address values
+
+       ("333333333", "345 1st Ave.", "Bluegale", "ME", "41234", "USA");
+
+insert into Address values
+
+       ("444444444", "543 10th St.", "Madison", "WI", "52302", "USA");
+
+
+insert into Ship values
+
+       ("1111", "The Expediter", "Yarl Stronsky", "1984", "10999999.99");
+
+insert into Ship values
+
+       ("2222", "Challenger", "John Smith", "2000", "15999999.99");
+
+insert into Ship values
+
+       ("3333", "Columbia", "Joe Schmoe", "2012", "21999999.99");
+
+insert into Ship values
+
+       ("4444", "Enterprise", "Amy Greene", "1999", "16999999.99");
+
+insert into Ship values
+
+       ("5555", "Strider", "Billy Jean", "2010", "20999999.99");
+
+
+insert into Port values
+
+       ("1234", "Port of Lahaina", "Maui", "HI", "U.S.A.");
+
+insert into Port values
+
+       ("4321", "Port of Juneau", "Juneau", "AS", "U.S.A.");
+
+insert into Port values
+
+       ("2222", "Port of Curacao-Caribbean", "Willemstad", "","Curacao");
+
+insert into Port values
+
+       ("3333", "Burnie Port Facility", "Burnie", "Tasmania", "Australia");
+
+insert into Port values
+
+       ("4444", "Port of Call Athens", "Piraeus", "Attica", "Greece");
+
+insert into Port values
+
+       ("0001", "Port of San Francisco", "San Francisco", "CA", "U.S.A");
+
+insert into Port values
+
+       ("0002", "Cape Liberty Cruise Port", "New York", "NY", "U.S.A.");
+
+insert into Port values
+
+       ("0003", "Port Canaveral", "Brevard County", "FL", "U.S.A.");
+
+
+insert into Cruise values
+
+       ("1010101", "1111", "12/19/2013", "0003", "2222", "01/10/2014");
+
+insert into Cruise values
+
+       ("2020202", "2222", "02/11/2014", "0001", "1234", "03/07/2014");
+
+insert into Cruise values
+
+       ("3030303", "3333", "07/05/2014", "0002", "4444", "08/01/2014");
+
+insert into Cruise values
+
+       ("4040404", "4444", "07/20/2014", "0001", "4321", "08/23/2014");
+
+insert into Cruise values
+
+       ("5050505", "5555", "08/22/2014", "0001", "3333", "10/09/2014");
+
+
+
+
+insert into Amenity values
+
+       ("20X50PoolB11", "1111",  "20ft by 50ft Swimming Pool");
+
+insert into Amenity values
+
+       ("10X40PoolB12", "2222",  "10ft by 40ft Swimming Pool");
+
+insert into Amenity values
+
+       ("20X30PoolB13", "3333",  "20ft by 30ft Swimming Pool");
+
+insert into Amenity values
+
+       ("20X50PoolB14", "4444",  "20ft by 50ft Swimming Pool");
+
+insert into Amenity values
+
+       ("40X50PoolB15", "5555",  "40ft by 50ft Swimming Pool");
+
+insert into Amenity values
+
+       ("30ftRockWallA11", "3333", "30 foot Rock Climbing Wall");
+
+insert into Amenity values
+
+       ("30ftRockWallA12", "4444", "30 foot Rock Climbing Wall");
+
+insert into Amenity values
+
+       ("30ftRockWallA13", "5555", "30 foot Rock Climbing Wall");
+
+insert into Amenity values
+
+       ("CasinoAT21", "1111",  "Don's Casino Package A");
+
+insert into Amenity values
+
+       ("CasinoAT34", "2222",  "Don's Casino Package B");
+
+insert into Amenity values
+
+       ("CasinoAT11", "3333",  "Don's Casino Package C");
+
+insert into Amenity values
+
+       ("CasinoAT64", "4444",  "Don's Casino Package D");
+
+insert into Amenity values
+
+       ("CasinoAT45", "5555",  "Don's Casino Package E");
+
+insert into Amenity values
+
+       ("GolfomaticB37", "3333", "2-hole Golf turf set");
+
+insert into Amenity values
+
+       ("GolfomaticB38", "4444", "3-hole Golf turf set");
+
+insert into Amenity values
+
+       ("GolfomaticB36", "5555", "4-hole Golf turf set");
+
+
+
+
+insert into Cabin values
+
+       ("0000001", "1111", "Inside", "999.99", "2", "N");
+
+insert into Cabin values
+
+       ("0000002", "2222", "Outside", "1399.99", "2", "Y");
+
+insert into Cabin values
+
+       ("0000003", "3333", "Balcony", "1599.99", "2", "N");
+
+insert into Cabin values
+
+       ("0000004", "4444", "Suite", "2199.99", "4", "Y");
+
+insert into Cabin values
+
+       ("0000005", "5555", "Inside", "1399.99", "2", "Y");
+
+
+insert into Customer values
+
+       ("1234567", "000000000", "Jane Smith", "8155550001", "janesmith@web.c", "01/01/1980", "John 8155550001");
+
+insert into Customer values
+
+       ("1234568", "111111111", "Joe Doe", "8155550002", "joedoe@web.c", "02/11/1991", "Jill 8155550002");
+
+insert into Customer values
+
+       ("1234569", "222222222", "Michael Jordon", "5555555555", "mjordon@web.c", "01/01/1968", "Melissa 8155550003");
+
+insert into Customer values
+
+       ("1234560", "333333333", "Amanda Jones", "7775550101", "ajones@web.c", "07/01/1940", "Brian 8155550004");
+
+insert into Customer values
+
+       ("1234561", "444444444", "Harold Willington", "8155551111", "hwill@web.c", "01/01/1994", "Bob 8155550005");
+
+
+
+
+insert into CabinRes values
+
+       ("1234567", "0000001", "12/19/2014", "1111");
+
+insert into CabinRes values
+
+       ("1234568", "0000002", "02/11/2014", "2222");
+
+insert into CabinRes values
+
+       ("1234569", "0000003", "07/05/2014", "3333");
+
+insert into CabinRes values
+
+       ("1234560", "0000004", "07/20/2014", "4444");
+
+insert into CabinRes values
+
+       ("1234561", "0000005", "08/22/2014", "5555");
+
+
+
+
+insert into Excursion values
+
+       ("1111111", "Snorkeling in Maui", "1234", "99.99");
+
+insert into Excursion values
+
+       ("2222222", "3-Day Hike Around Juneau", "4321", "199.99");
+
+insert into Excursion values
+
+       ("3333333", "Scuba Diving in Caribbean", "2222", "299.99");
+
+insert into Excursion values
+
+       ("4444444", "Bus Tour of Tasmania", "3333", "39.99");
+
+insert into Excursion values
+
+       ("5555555", "3-Day Tour of Athens", "4444", "1299.99");
+
+
+insert into Guest values
+
+       ("1000000", "1234567", "John", "Smith", "johns@s.c", "1010101", "0000001");
+
+insert into Guest values
+
+       ("1000001", "1234567", "Jane", "Smith", "janesmith@web.c", "1010101", "0000001");
+
+insert into Guest values
+
+       ("2000000", "1234568", "Joe", "Doe", "joedoe@web.c", "2020202", "0000002");
+
+insert into Guest values
+
+       ("2000001", "1234568", "Amy", "Doe", "amyd@web.c", "2020202", "0000002");
+
+insert into Guest values
+
+       ("3000000", "1234569", "Michael", "Jordan", "mjordan@web.c", "3030303", "0000003");
+
+insert into Guest values
+
+       ("3000001", "1234569", "Melinda", "Jordan", "melindaj@web.c", "3030303", "0000003");
+
+insert into Guest values
+
+       ("4000000", "1234560", "Amanda", "Jones", "ajones@web.c", "4040404", "0000004");
+
+insert into Guest values
+
+       ("4000001", "1234560", "Bob", "Jones", "bjones@web.c", "4040404", "0000004");
+
+insert into Guest values
+
+       ("4000002", "1234560", "Michael", "Jones", "mjones@web.c", "4040404", "0000004");
+
+insert into Guest values
+
+       ("4000003", "1234560", "Tracy", "Jones", "", "4040404", "0000004");
+
+insert into Guest values
+
+       ("5000000", "1234561", "Harold", "Willington", "hwill@web.c", "5050505", "0000005");
+
+insert into Guest values
+
+       ("5000001", "1234561", "Tracy", "Jones", "", "5050505", "0000005");
+
+
+
+
+insert into ExcursRes values
+
+("1234567", "3333333", "12/24/2013", "2");        
+
+insert into ExcursRes values
+
+("1234568", "1111111", "02/24/2014", "2");
+
+insert into ExcursRes values
+
+("1234569", "5555555", "08/10/2014", "2");
+
+insert into ExcursRes values
+
+("1234560", "2222222", "08/03/2014", "4");
+
+insert into ExcursRes values
+
+("1234561", "4444444", "09/15/2014", "2");
+
+
+insert into CreditCard values
+
+       ("1111 2222 3333 4444", "Visa", "1234567", "01/15/2015", "123");
+
+insert into CreditCard values
+
+       ("1221 2112 3443 4114", "Discover", "1234568", "01/11/2015", "1234");
+
+insert into CreditCard values
+
+       ("1000 0000 1113 0000", "Visa", "1234569", "07/15/2015", "321");
+
+insert into CreditCard values
+
+       ("4444 1111 2222 3333", "Visa", "1234560", "06/15/2015", "111");
+
+insert into CreditCard values
+
+       ("4444 3333 2222 1111", "MasterCard", "1234561", "01/14/2018", "122");
