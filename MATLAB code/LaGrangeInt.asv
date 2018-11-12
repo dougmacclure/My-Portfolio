@@ -1,0 +1,21 @@
+str = input('Enter formula for function you wish to approximate: ','s')
+N = input('How many evenly-spaced nodes do you want in [0,1]? ')
+f = inline(str)
+
+y = 0
+for i=1:N
+    X(i) = i/N
+    Y(i) = f(X(i))    
+end
+
+p = [0]
+
+for j=1:N
+    p = p + langrange_poly(X(j),j)*Y(j)
+end
+
+x = linspace(0,1)
+
+plot
+
+

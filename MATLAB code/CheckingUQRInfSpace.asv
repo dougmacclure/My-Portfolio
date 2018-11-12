@@ -1,0 +1,53 @@
+alpha = (1 + sqrt(2));
+a = 1.0;
+b = -2*exp(1/2)/alpha;
+f = -exp(1)/(alpha^2);
+p1 = -27*b^2*f;
+p2 = p1 + sqrt(-4.0*(12*a*f)^3+p1^2);
+p3 = 12*a*f/(3*(p2/2)^(1/3))+(p2/2)^(1/3)/3;
+p4 = sqrt(b^2/4+p3);
+p5 = b^2/2-p3;
+p6 = (-1.0*b^3)/(4*p4);
+
+%The zeros of h_2((0,0,z))-z
+z1 = -1.0*b/4-p4/2-sqrt(p5-p6)/2;
+z2 = -1.0*b/4-p4/2+sqrt(p5-p6)/2;
+z3 = -1.0*b/4+p4/2-sqrt(p5-p6)/2;
+z4 = -1.0*b/4+p4/2+sqrt(p5-p6)/2;
+
+%Put together derivative matrix for h_2
+
+f = @(x,y,z)2*atan(sqrt((x^2+y^2)/(z^2)))/(pi);
+g = @(x,y,z)log((x^2+y^2+z^2));
+F1 = @(x,y,z)(pi/2)*abs(sin(pi*f(x,y,z)));
+F2 = @(x,y,z)g(x,y,z) + f(x,y,z)-asinh(1)-.5;
+
+
+
+
+pfx = @(x)(2*x*abs(z)^3)/((sqrt(x^2+y^2))*(x^2+y^2+z^2));
+pfy = @(x)(2*y*abs(z)^3)/((sqrt(x^2+y^2))*(x^2+y^2+z^2));
+pfz = @(x)-2.0*sqrt(x^2+y^2)/(x^2+y^2+z^2);
+
+pgx = @(x)2*x/(x^2+y^2+z^2);
+pgy = @(x)2*y/(x^2+y^2+z^2);
+pgz = @(x)2*z/(x^2+y^2+z^2);
+
+pF1x = @(x)pi^2*cos(pi*f(x,y,z))*pfx(x)/2;
+pF1y = @(x)pi^2*cos(pi*f(x,y,z))*pfy(x)/2;
+pF1z = @(x)pi^2*cos(pi*f(x,y,z))*pfz(x)/2;
+
+pF2x = @(x)pgx(x) + pfx(x);
+pF2y = @(x)pgy(x) + pfy(x);
+pF2z = @(x)pgz(x) + pfz(x);
+
+h11x = @(x)(x*(cosh(F2(x))*((x^2+y^2)*(cos(F1(x))*pF1x(x))-x*sin(F1(x)))+sinh(F2(x))*(x^2+y^2)*sin(F1(x))*pF2x(x))/(x^2+y^2)^(3/2));
+h12x = @(x)(y/x)*h11x(x);
+h12y = @(x)y*(cosh(F2(x))*((x^2+y^2)*(cos(F1(x))*pF1y(x))-y*sin(F1(x)))+sinh(F2(x))*(x^2+y^2)*sin(F1(x))*pF2y(x))/(x^2+y^2)^(3/2);
+h11y = @(x)(x/y)*h12y(x);
+h11z = @(x)(x/sqrt(x^2+y^2))*(cos(F1(x))*cosh(F2(x))*pF1z(x)-y*sin(F1(x))*sinh(F2(x))*pF2z(x));
+h12z = @(x)(y/sqrt(x^2+y^2))*(cos(F1(x))*cosh(F2(x))*pF1z(x)-x*sin(F1(x))*sinh(F2(x))*pF2z(x));
+h13x = @(x)(cos(F1(x))*cosh(F2(x))*pF1x(x)-sin(F1(x))*sinh(F2(x))*pF1x(x));
+h13y = @(x)(cos(F1(x))*cosh(F2(x))*pF1y(x)-sin(F1(x))*sinh(F2(x))*pF1y(x));
+h13z = @(x)(cos(F1(x))*cosh(F2(x))*pF1z(x)-sin(F1(x))*sinh(F2(x))*pF1z(x));
+

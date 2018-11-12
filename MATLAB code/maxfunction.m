@@ -1,0 +1,5 @@
+str = input('Enter function ', 's')
+f = inline(str)
+x = linspace(0,1)
+y = f(x)
+max(abs(y))
