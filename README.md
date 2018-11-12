@@ -22,7 +22,7 @@ https://aws.amazon.com/blogs/big-data/powering-amazon-redshift-analytics-with-ap
 
 # AIC Presentation
 
-This is a presentation designed for an audience with casual familiarity with machine learning.  This presentation briefly describes one of three projects I've undertaken during my internship with Inte Q.  The other project involved helping build and package a customer segmentation (using k-means).
+This is a presentation designed for an audience with casual familiarity with machine learning.  This presentation briefly describes one of two projects I've undertaken during my internship with Inte Q.  The other project involved helping build and package a customer segmentation (using k-means).
 
 # Data Structures and Algorithm Analysis
 
