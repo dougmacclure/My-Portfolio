@@ -1,13 +1,15 @@
-# Fraud-Detection-Jupyter-Notebook
+# Machine Learning Projects
+
+1) Fraud-Detection-Jupyter-Notebook
 Basic Classification Machine Learning Problem
 
-Data Source: https://www.kaggle.com/mlg-ulb/creditcardfraud
+DATA SOURCE: https://www.kaggle.com/mlg-ulb/creditcardfraud
 
 Coded in Python3
 
-# Flight-Delay-Jupyter-Notebook
+1) Flight-Delay-Jupyter-Notebook
 
-Data:
+DATA:
 
 O'HARE DATA:
 https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236
