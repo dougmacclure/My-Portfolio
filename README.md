@@ -57,10 +57,10 @@ Various UNIX shell scripts and C++ code for various server administrative tasks.
 4) Assign9  - A program which emulates the UNIX command "tee".  It takes input from standard input and copies it into multiple files.
 5) Assign8 and Assign7  - An awk script which is used to process a sales report log, and prints total sales for each employee
 6) Assign6 - UNIX script for four commands:  
-  new -    Allows user to create a new database
-  add -    Allows user to add new records into database file
-  show -   Allows user to view specific records within database
-  delete - Allows user to remove records from database
+  a) new -    Allows user to create a new database
+  b) add -    Allows user to add new records into database file
+  c) show -   Allows user to view specific records within database
+  d) delete - Allows user to remove records from database
 7) Assign5 - A UNIX Spell-Checker bash script
 
 
