@@ -1,0 +1,111 @@
+
+A Weighted Digraph
+________________
+
+No of Nodes = 1
+
+Adjacency Matrix:
+
+  |  A
+--|---
+A |  -
+
+Paths by Depth-First Search:
+(skip every 2nd and 3rd node to print)
+
+A
+
+
+A Weighted Digraph
+________________
+
+No of Nodes = 5
+
+Adjacency Matrix:
+
+  |  A  B  C  D  E
+--|---------------
+A |  -  -  -  6  -
+  |
+B |  -  -  8  -  -
+  |
+C |  7  -  -  -  -
+  |
+D |  7  9 10  -  1
+  |
+E |  4  - 10  -  -
+
+Paths by Depth-First Search:
+(skip every 2nd and 3rd node to print)
+
+A->D->B->C->E
+
+D->A->B->C->E
+
+
+A Weighted Digraph
+________________
+
+No of Nodes = 20
+
+Adjacency Matrix:
+
+  |  A  B  C  D  E  F  G  H  I  J  K  L  M  N  O  P  Q  R  S  T
+--|------------------------------------------------------------
+A |  -  -  -  -  -  -  7  -  -  -  -  -  -  -  -  -  -  -  7  9
+  |
+B | 10  -  1  4  - 10  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+  |
+C |  -  -  -  -  1  -  2  -  -  -  1  -  6  -  -  -  -  -  -  -
+  |
+D |  -  -  -  -  3  -  -  -  -  -  -  -  -  7  -  -  -  2  -  -
+  |
+E |  -  -  -  -  -  -  -  -  -  -  -  -  5  -  2  -  -  -  -  -
+  |
+F |  -  -  7  -  -  -  - 10 10  -  -  -  -  -  -  -  -  -  8  7
+  |
+G |  -  4  5  2 10 10  -  -  -  -  -  -  -  4  -  7  2  -  -  -
+  |
+H |  9  -  4  5  5  8  -  -  -  8  -  -  -  -  -  -  -  -  5  -
+  |
+I |  -  -  -  -  -  -  9  -  -  -  -  -  -  -  -  -  -  -  1  -
+  |
+J |  9 10  8  -  -  1  - 10  -  -  -  -  -  -  5  -  -  -  -  -
+  |
+K |  -  6  -  -  3  -  -  -  -  1  -  2  -  -  -  -  9  -  -  -
+  |
+L |  -  3  -  -  -  -  5  -  -  1  -  -  -  -  -  -  -  -  -  2
+  |
+M |  4  -  4  -  -  -  -  4  -  -  -  -  -  -  5  -  -  -  -  -
+  |
+N |  -  -  7  -  -  -  -  -  - 10  -  3  -  -  -  -  3  - 10  -
+  |
+O |  -  -  -  -  -  -  -  -  -  -  -  -  5 10  -  -  -  -  3  -
+  |
+P |  -  -  -  -  -  1  -  -  9  -  -  -  2  -  -  -  -  -  - 10
+  |
+Q |  4  -  -  1  -  5  -  -  8  -  2  -  -  -  -  3  -  5  -  -
+  |
+R |  - 10  -  -  -  -  -  -  -  4  -  -  -  5  7  -  1  -  9  -
+  |
+S |  -  -  -  -  -  4  -  -  -  -  6  - 10  -  -  2  -  -  -  8
+  |
+T |  -  7  5  -  -  -  -  -  -  -  -  -  -  -  -  6  -  -  -  -
+
+Paths by Depth-First Search:
+(skip every 2nd and 3rd node to print)
+
+A->G->B->C->E->M->H->D->N->J->F->I->S->K->L->T->P->Q->R->O
+
+D->E->M->A->G->B->C->K->J->F->H->S->P->I->T->O->N->L->Q->R
+
+G->B->A->S->F->C->E->M->H->D->N->J->O->L->T->P->I->Q->K->R
+
+J->A->G->B->C->E->M->H->D->N->L->T->P->F->I->S->K->Q->R->O
+
+M->A->G->B->C->E->O->N->J->F->H->D->R->Q->I->S->K->L->T->P
+
+P->F->C->E->M->A->G->B->D->N->J->H->S->K->L->T->Q->I->R->O
+
+S->F->C->E->M->A->G->B->D->N->J->H->O->L->T->P->I->Q->K->R
+

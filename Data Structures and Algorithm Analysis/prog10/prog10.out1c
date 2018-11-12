@@ -1,0 +1,244 @@
+	*** Hashing with linear probe ***
+
+ x insert: :KT5:  14:executive desk          :31KT5 
+result: 5checking for open positionItem entered into hTable at position 5
+ x insert: :ZZ0:   5:wooden bookcase         :32ZZ0 
+result: 23checking for open positionItem entered into hTable at position 23
+ x insert: :FT7:  25:metal bookshelf         :33FT7 
+result: 9checking for open positionItem entered into hTable at position 9
+ x insert: :AS2: 100:metal waste basket      :34AS2 
+result: 27checking for open positionItem entered into hTable at position 27
+ x insert: :DF5:1019:printer paper           :35DF5 
+result: 29checking for open positionItem entered into hTable at position 29
+ x insert: :TH1:2029:copier paper            :36TH1 
+result: 20checking for open positionItem entered into hTable at position 20
+ x insert: :GN2:  15:electric typewriter     :37GN2 
+result: 18checking for open positionItem entered into hTable at position 18
+ x insert: :QJ8:   1:IMB system/2 PC         :38QJ8 
+result: 11checking for open positionItem entered into hTable at position 11
+
+hTable_print:
+entry  key    number    description
+Item #1: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #2: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #3: 
+key: QJ8
+description: IMB system/2 PC
+quantity: 1
+
+Item #4: 
+key: GN2
+description: electric typewriter
+quantity: 15
+
+Item #5: 
+key: TH1
+description: copier paper
+quantity: 2029
+
+Item #6: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #7: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #8: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+ x insert: :KT5: 786:mahogany desk           :5Error.  Item already exists in inventory.
+ x insert: :BC3: 628:pencil sharpener        :39BC3 
+result: 4checking for open positionItem entered into hTable at position 4
+ x insert: :CK7: 516:wall calendar           :40CK7 
+result: 7checking for open positionItem entered into hTable at position 7
+ x insert: :AA2:  30:looseleaf binder        :41AA2 
+result: 2checking for open positionItem entered into hTable at position 2
+ x insert: :PA1: 102:filing cabinet          :42PA1 
+result: 26checking for open positionItem entered into hTable at position 26
+ x insert: :VL2:1017:paper clips             :43VL2 
+result: 23checking for open positionItem entered into hTable at position 23
+ x insert: :XS6: 103:pink pearl eraser       :44XS6 
+result: 28checking for open positionItem entered into hTable at position 28
+ x insert: :AT4: 404:desk calendar           :45AT4 
+result: 8checking for open positionItem entered into hTable at position 13
+ x insert: :ZL0: 606:manila file folder      :46ZL0 
+result: 7checking for open positionItem entered into hTable at position 17
+ x insert: :XS6:1000:gum erasers             :30Error.  Item already exists in inventory.
+search: key ZZ0
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+search: key GN2
+key: GN2
+description: electric typewriter
+quantity: 15
+search: key VL2
+key: VL2
+description: paper clips
+quantity: 1017
+search: key PA1
+key: PA1
+description: filing cabinet
+quantity: 102
+search: key XS6
+key: XS6
+description: pink pearl eraser
+quantity: 103
+search: key ZL0
+key: ZL0
+description: manila file folder
+quantity: 606
+search: key CQ8Error: item not found in hash table.
+search: key JD6Error: item not found in hash table.
+search: key KL8Error: item not found in hash table.
+search: key SP3Error: item not found in hash table.
+
+hTable_print:
+entry  key    number    description
+Item #1: 
+key: AA2
+description: looseleaf binder
+quantity: 30
+
+Item #2: 
+key: BC3
+description: pencil sharpener
+quantity: 628
+
+Item #3: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #4: 
+key: CK7
+description: wall calendar
+quantity: 516
+
+Item #5: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #6: 
+key: AT4
+description: desk calendar
+quantity: 404
+
+Item #7: 
+key: QJ8
+description: IMB system/2 PC
+quantity: 1
+
+Item #8: 
+key: ZL0
+description: manila file folder
+quantity: 606
+
+Item #9: 
+key: GN2
+description: electric typewriter
+quantity: 15
+
+Item #10: 
+key: VL2
+description: paper clips
+quantity: 1017
+
+Item #11: 
+key: TH1
+description: copier paper
+quantity: 2029
+
+Item #12: 
+key: PA1
+description: filing cabinet
+quantity: 102
+
+Item #13: 
+key: XS6
+description: pink pearl eraser
+quantity: 103
+
+Item #14: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #15: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #16: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+
+sort_print:
+   sorted hash table:
+   key    number    description
+key: BC3
+description: pencil sharpener
+quantity: 628
+key: $$$
+description: 
+quantity: 0
+key: $$$
+description: 
+quantity: 0
+key: $$$
+description: 
+quantity: 0
+key: PA1
+description: filing cabinet
+quantity: 102
+key: $$$
+description: 
+quantity: 0
+key: $$$
+description: 
+quantity: 0
+key: $$$
+description: 
+quantity: 0
+key: $$$
+description: 
+quantity: 0
+key: KT5
+description: executive desk
+quantity: 14
+key: AA2
+description: looseleaf binder
+quantity: 30
+key: $$$
+description: 
+quantity: 0
+key: $$$
+description: 
+quantity: 0
+key: TH1
+description: copier paper
+quantity: 2029
+key: AT4
+description: desk calendar
+quantity: 404
+key: ZL0
+description: manila file folder
+quantity: 606
+
+	*** end of program termination ***

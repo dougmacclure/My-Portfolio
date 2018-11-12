@@ -1,0 +1,162 @@
+#include "/home/onyuksel/courses/340/progs/13s/p5/prog5.h"
+
+using namespace std;
+
+int main()
+{
+
+MS store;
+
+srand(SEED);
+
+int clock = 0;
+int id = 1;
+stat storeStats;
+event storeEvents;
+init_vars(storeEvents, storeStats);
+
+while(clock <= SIM_TIME)
+
+	{
+
+	if(clock == storeEvents.next_arr)
+		{
+		
+		Arrival(storeEvents, id, store);
+		
+		}
+
+	else if(clock == storeEvents.next_dept && (!store.empty()))
+		Departure(storeEvents, store, storeStats);
+	
+	
+	clock =	update_clock(storeEvents, store.empty());
+	id++;
+	
+	}
+
+print_fin_stat(storeStats);
+
+return 0;
+}
+
+
+void init_vars(event &e, stat &s)
+{
+
+e.next_arr = 0;
+e.next_dept = SIM_TIME + 1;
+s.num_dept = 0;
+s.tot_shop = 0;
+s.min_shop = SIM_TIME;
+s.max_shop = 0;
+
+}
+
+void Arrival(event &e, const int &id, MS &ms)
+{
+
+int tempClock = e.next_arr;
+cust c;
+c.id = id;
+c.atime = tempClock;
+c.dtime = dept_time(e.next_arr);
+ms.insert(c);
+e.next_arr = arr_time(tempClock);
+P p = ms.begin();
+c = *p;
+e.next_dept = c.dtime;
+}
+
+void Departure(event &e, MS &ms, stat &s)
+{
+P p = ms.begin();
+cust c = *p;
+ms.erase(p);
+if( !ms.empty() )
+	e.next_dept += dept_time(e.next_dept);
+
+update_fin_stat(s, c);
+}
+
+int arr_time(const int& clock)
+{
+int RND = rnd(MIN_PICK, MAX_PICK);
+return clock + RND;
+
+}
+
+int dept_time(const int& clock)
+{
+
+int RNDPICK = rnd(MIN_PICK, MAX_PICK);
+int RNDSERV = rnd(MIN_SERV, MAX_SERV);
+
+return clock + RNDPICK + RNDSERV;
+
+}
+
+int update_clock(const event &e, const bool &flag)
+{
+
+if(flag == false || (flag == true && (e.next_arr < e.next_dept)))
+
+	return e.next_arr;
+
+else if( flag && e.next_arr > e.next_dept)
+
+	return e.next_dept;
+ 	
+}
+
+
+void update_fin_stat(stat &s, const cust &c)
+{
+
+s.tot_shop +=(c.dtime - c.atime);
+s.num_dept++;
+if(s.min_shop > (c.dtime - c.atime))
+	
+	s.min_shop = (c.dtime - c.atime);
+
+if(s.max_shop < (c.dtime - c.atime))
+
+	s.max_shop = (c.dtime - c.atime);
+
+
+if(s.num_dept % SAMPLE_INT == 0)
+
+	{
+
+	cout << "num_dept = " << s.num_dept << " cust_id = " << c.id << " arr_time = " 
+	<< c.atime  << " dept_time = " << c.dtime << " shop_time = " << (c.dtime-c.atime) << endl;
+
+	}
+
+}
+
+void print_fin_stat(stat &s)
+{
+
+cout << endl << "total num of departures = " << s.num_dept;
+cout << endl << "total simulation time   = " << SIM_TIME << endl;
+cout << endl << "minimum shopping time   = " << s.min_shop;
+cout << endl << "maximum shopping time   = " << s.max_shop;
+cout << endl << "average shopping time   = " << fixed << setprecision(2) 
+     << (long)(s.tot_shop/s.num_dept);
+}
+
+
+bool cmp::operator()(const cust &c1, const cust &c2) const
+{
+
+return c1.dtime < c2.dtime;
+
+}
+
+int rnd(const int &low, const int &high)
+{
+
+return (rand()%(high - low + 1) + low);
+
+}

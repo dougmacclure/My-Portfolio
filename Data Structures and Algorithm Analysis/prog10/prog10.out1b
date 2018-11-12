@@ -1,0 +1,687 @@
+	*** Hashing with linear probe ***
+
+ x insert: :KT5:  14:executive desk          :31KT5 
+result: 5checking for open positioninserting... Item entered into hTable at position 5
+inserting... Item entered into hTable at position 10
+inserting... Item entered into hTable at position 15
+inserting... Item entered into hTable at position 20
+inserting... Item entered into hTable at position 25
+inserting... Item entered into hTable at position 30
+inserting... Item entered into hTable at position 4
+inserting... Item entered into hTable at position 9
+inserting... Item entered into hTable at position 14
+inserting... Item entered into hTable at position 19
+inserting... Item entered into hTable at position 3
+inserting... Item entered into hTable at position 8
+inserting... Item entered into hTable at position 13
+inserting... Item entered into hTable at position 18
+Table is full!
+ x insert: :ZZ0:   5:wooden bookcase         :45ZZ0 
+result: 23checking for open positioninserting... Item entered into hTable at position 2
+inserting... Item entered into hTable at position 7
+inserting... Item entered into hTable at position 12
+inserting... Item entered into hTable at position 17
+inserting... Item entered into hTable at position 1
+inserting... Item entered into hTable at position 6
+inserting... Item entered into hTable at position 26
+inserting... Item entered into hTable at position 0
+inserting... Item entered into hTable at position 5
+inserting... Item entered into hTable at position 15
+inserting... Item entered into hTable at position 20
+Table is full!
+ x insert: :FT7:  25:metal bookshelf         :56FT7 
+result: 9checking for open positioninserting... Item entered into hTable at position 9
+inserting... Item entered into hTable at position 19
+inserting... Item entered into hTable at position 3
+inserting... Item entered into hTable at position 18
+inserting... Item entered into hTable at position 28
+inserting... Item entered into hTable at position 7
+inserting... Item entered into hTable at position 12
+inserting... Item entered into hTable at position 27
+inserting... Item entered into hTable at position 1
+Table is full!
+ x insert: :AS2: 100:metal waste basket      :65AS2 
+result: 27checking for open positioninserting... Item entered into hTable at position 5
+inserting... Item entered into hTable at position 10
+inserting... Item entered into hTable at position 19
+inserting... Item entered into hTable at position 28
+inserting... Item entered into hTable at position 2
+Table is full!
+ x insert: :DF5:1019:printer paper           :70DF5 
+result: 29checking for open positioninserting... Item entered into hTable at position 3
+inserting... Item entered into hTable at position 8
+inserting... Item entered into hTable at position 23
+inserting... Item entered into hTable at position 4
+Table is full!
+ x insert: :TH1:2029:copier paper            :74TH1 
+result: 20checking for open positioninserting... Item entered into hTable at position 20
+inserting... Item entered into hTable at position 21
+inserting... Item entered into hTable at position 5
+Table is full!
+ x insert: :GN2:  15:electric typewriter     :77GN2 
+result: 18checking for open positioninserting... Item entered into hTable at position 23
+inserting... Item entered into hTable at position 6
+inserting... Item entered into hTable at position 25
+Table is full!
+ x insert: :QJ8:   1:IMB system/2 PC         :80QJ8 
+result: 11checking for open positioninserting... Item entered into hTable at position 26
+inserting... Item entered into hTable at position 7
+Table is full!
+
+hTable_print:
+entry  key    number    description
+Item #1: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #2: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #3: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #4: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+Item #5: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+Item #6: 
+key: TH1
+description: copier paper
+quantity: 2029
+
+Item #7: 
+key: GN2
+description: electric typewriter
+quantity: 15
+
+Item #8: 
+key: QJ8
+description: IMB system/2 PC
+quantity: 1
+
+Item #9: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #10: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #11: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #12: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+Item #13: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #14: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #15: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #16: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #17: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #18: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #19: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #20: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #21: 
+key: TH1
+description: copier paper
+quantity: 2029
+
+Item #22: 
+key: TH1
+description: copier paper
+quantity: 2029
+
+Item #23: 
+key: GN2
+description: electric typewriter
+quantity: 15
+
+Item #24: 
+key: GN2
+description: electric typewriter
+quantity: 15
+
+Item #25: 
+key: QJ8
+description: IMB system/2 PC
+quantity: 1
+
+Item #26: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #27: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #28: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #29: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+Item #30: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #31: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #32: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #33: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #34: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #35: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #36: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #37: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #38: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #39: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #40: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #41: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #42: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #43: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #44: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #45: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #46: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #47: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #48: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #49: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #50: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #51: 
+key: KT5
+description: executive desk
+quantity: 14
+
+ x insert: :KT5: 786:mahogany desk           :19Error.  Item already exists in inventory.
+ x insert: :BC3: 628:pencil sharpener        :82BC3 
+result: 4checking for open positioninserting... Item entered into hTable at position 8
+Table is full!
+ x insert: :CK7: 516:wall calendar           :83CK7 
+result: 7checking for open positioninserting... Item entered into hTable at position 9
+Table is full!
+ x insert: :AA2:  30:looseleaf binder        :84AA2 
+result: 2checking for open positioninserting... Item entered into hTable at position 10
+Table is full!
+ x insert: :PA1: 102:filing cabinet          :85PA1 
+result: 26checking for open positioninserting... Item entered into hTable at position 11
+Table is full!
+ x insert: :VL2:1017:paper clips             :86VL2 
+result: 23checking for open positioninserting... Item entered into hTable at position 12
+inserting... Item entered into hTable at position 13
+Table is full!
+ x insert: :XS6: 103:pink pearl eraser       :88XS6 
+result: 28checking for open positioninserting... Item entered into hTable at position 14
+Table is full!
+ x insert: :AT4: 404:desk calendar           :89AT4 
+result: 8checking for open positioninserting... Item entered into hTable at position 15
+Table is full!
+ x insert: :ZL0: 606:manila file folder      :90ZL0 
+result: 7checking for open positioninserting... Item entered into hTable at position 16
+Table is full!
+ x insert: :XS6:1000:gum erasers             :14Error.  Item already exists in inventory.
+search: key ZZ0
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+search: key GN2
+key: GN2
+description: electric typewriter
+quantity: 15
+search: key VL2
+key: VL2
+description: paper clips
+quantity: 1017
+search: key PA1
+key: PA1
+description: filing cabinet
+quantity: 102
+search: key XS6
+key: XS6
+description: pink pearl eraser
+quantity: 103
+search: key ZL0
+key: ZL0
+description: manila file folder
+quantity: 606
+search: key CQ8Error: item not found in hash table.
+search: key JD6Error: item not found in hash table.
+search: key KL8Error: item not found in hash table.
+search: key SP3Error: item not found in hash table.
+
+hTable_print:
+entry  key    number    description
+Item #1: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #2: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #3: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #4: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+Item #5: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+Item #6: 
+key: TH1
+description: copier paper
+quantity: 2029
+
+Item #7: 
+key: GN2
+description: electric typewriter
+quantity: 15
+
+Item #8: 
+key: QJ8
+description: IMB system/2 PC
+quantity: 1
+
+Item #9: 
+key: BC3
+description: pencil sharpener
+quantity: 628
+
+Item #10: 
+key: CK7
+description: wall calendar
+quantity: 516
+
+Item #11: 
+key: AA2
+description: looseleaf binder
+quantity: 30
+
+Item #12: 
+key: PA1
+description: filing cabinet
+quantity: 102
+
+Item #13: 
+key: VL2
+description: paper clips
+quantity: 1017
+
+Item #14: 
+key: VL2
+description: paper clips
+quantity: 1017
+
+Item #15: 
+key: XS6
+description: pink pearl eraser
+quantity: 103
+
+Item #16: 
+key: AT4
+description: desk calendar
+quantity: 404
+
+Item #17: 
+key: ZL0
+description: manila file folder
+quantity: 606
+
+Item #18: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #19: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #20: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #21: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+Item #22: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #23: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #24: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #25: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #26: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #27: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #28: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #29: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #30: 
+key: TH1
+description: copier paper
+quantity: 2029
+
+Item #31: 
+key: TH1
+description: copier paper
+quantity: 2029
+
+Item #32: 
+key: GN2
+description: electric typewriter
+quantity: 15
+
+Item #33: 
+key: GN2
+description: electric typewriter
+quantity: 15
+
+Item #34: 
+key: QJ8
+description: IMB system/2 PC
+quantity: 1
+
+Item #35: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #36: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #37: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #38: 
+key: DF5
+description: printer paper
+quantity: 1019
+
+Item #39: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #40: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #41: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #42: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #43: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #44: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #45: 
+key: AS2
+description: metal waste basket
+quantity: 100
+
+Item #46: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #47: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #48: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #49: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #50: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #51: 
+key: FT7
+description: metal bookshelf
+quantity: 25
+
+Item #52: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #53: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #54: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #55: 
+key: ZZ0
+description: wooden bookcase
+quantity: 5
+
+Item #56: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #57: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #58: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #59: 
+key: KT5
+description: executive desk
+quantity: 14
+
+Item #60: 
+key: KT5
+description: executive desk
+quantity: 14
+
+
+	*** end of program termination ***

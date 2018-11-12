@@ -1,0 +1,32 @@
+first: tree is not empty
+	no of nodes    = 15
+	height of tree =  5
+
+The elements of 'first' in inorder:
+	-11 8 -3 12 -1 -9 -5 2 16 10 6 -13 4 14 -7 
+The elements of 'first' in preorder:
+	2 -1 -3 8 -11 12 -5 -9 4 6 10 16 -13 -7 14 
+The elements of 'first' in postorder:
+	-11 8 12 -3 -9 -5 -1 16 10 -13 6 14 -7 4 2 
+
+second: tree is not empty
+	no of nodes    =  9
+	height of tree =  4
+
+The elements of 'second' in inorder:
+	7 3.25 0.75 -7.75 -0.5 -11.5 4.5 -4 8.25 
+The elements of 'second' in preorder:
+	-0.5 0.75 3.25 7 -7.75 -4 4.5 -11.5 8.25 
+The elements of 'second' in postorder:
+	7 3.25 -7.75 0.75 -11.5 4.5 8.25 -4 -0.5 
+
+third: tree is not empty
+	no of nodes    =  7
+	height of tree =  4
+
+The elements of 'third' in inorder:
+	objects. list is string This of a 
+The elements of 'third' in preorder:
+	This is list objects. string a of 
+The elements of 'third' in postorder:
+	objects. list string is of a This 

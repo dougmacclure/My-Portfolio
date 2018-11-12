@@ -1,0 +1,57 @@
+#include "/home/onyuksel/courses/340/common/340.h"
+
+using namespace std;
+
+int main()
+{
+
+return 0;
+}
+
+template<class T> void get_list(vector<T> &v, const char* path)
+{
+
+T temp;
+ifstream in;
+in.open(path);
+if(in.fail())
+
+	{
+
+	cerr << "Cannot open file.  Check file permissions.";
+	exit(-1);
+
+	}
+
+in.read((char*)&temp, sizeof(T));
+
+while(in)
+
+	{
+
+	v.push_back(temp);
+
+	in.read((char*)&temp, sizeof(T));
+
+	}	
+
+
+}
+
+template<class T> bool abs_less<T>::operator()(const T& x, const T& y) const
+{
+
+int inttest;
+float floattest;
+double doubletest;
+
+if(!(inttest >> x) && !(floattest >> x) && !(doubletest >> x))
+
+	cout >> "Error.  Absolute values not defined for this data type.";
+
+else
+
+	return abs(x) < abs(y);
+}
+
+

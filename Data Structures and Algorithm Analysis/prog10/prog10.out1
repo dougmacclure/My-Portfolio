@@ -1,0 +1,99 @@
+	*** Hashing with linear probe ***
+
+insert: :KT5:  14:executive desk          : entry =  5
+insert: :ZZ0:   5:wooden bookcase         : entry = 23
+insert: :FT7:  25:metal bookshelf         : entry =  9
+insert: :AS2: 100:metal waste basket      : entry = 27
+insert: :DF5:1019:printer paper           : entry = 29
+insert: :TH1:2029:copier paper            : entry = 20
+insert: :GN2:  15:electric typewriter     : entry = 18
+insert: :QJ8:   1:IMB system/2 PC         : entry = 11
+
+hTable_print:
+entry  key    number    description
+
+   5:  KT5  -    14  -  executive desk
+
+   9:  FT7  -    25  -  metal bookshelf
+
+  11:  QJ8  -     1  -  IMB system/2 PC
+
+  18:  GN2  -    15  -  electric typewriter
+
+  20:  TH1  -  2029  -  copier paper
+
+  23:  ZZ0  -     5  -  wooden bookcase
+
+  27:  AS2  -   100  -  metal waste basket
+
+  29:  DF5  -  1019  -  printer paper
+
+insert: :KT5: 786:mahogany desk           : not inserted - duplicate key!!!
+insert: :BC3: 628:pencil sharpener        : entry =  4
+insert: :CK7: 516:wall calendar           : entry =  7
+insert: :AA2:  30:looseleaf binder        : entry =  2
+insert: :PA1: 102:filing cabinet          : entry = 26
+insert: :VL2:1017:paper clips             : entry = 24
+insert: :XS6: 103:pink pearl eraser       : entry = 28
+insert: :AT4: 404:desk calendar           : entry =  8
+insert: :ZL0: 606:manila file folder      : entry = 10
+insert: :XS6:1000:gum erasers             : not inserted - duplicate key!!!
+search: key ZZ0 ==> number:    5 - item: wooden bookcase
+search: key GN2 ==> number:   15 - item: electric typewriter
+search: key VL2 ==> number: 1017 - item: paper clips
+search: key PA1 ==> number:  102 - item: filing cabinet
+search: key XS6 ==> number:  103 - item: pink pearl eraser
+search: key ZL0 ==> number:  606 - item: manila file folder
+search: key CQ8 not in table!!
+search: key JD6 not in table!!
+search: key KL8 not in table!!
+search: key SP3 not in table!!
+
+hTable_print:
+entry  key    number    description
+
+   2:  AA2  -    30  -  looseleaf binder
+
+   4:  BC3  -   628  -  pencil sharpener
+   5:  KT5  -    14  -  executive desk
+
+   7:  CK7  -   516  -  wall calendar
+   8:  AT4  -   404  -  desk calendar
+   9:  FT7  -    25  -  metal bookshelf
+  10:  ZL0  -   606  -  manila file folder
+  11:  QJ8  -     1  -  IMB system/2 PC
+
+  18:  GN2  -    15  -  electric typewriter
+
+  20:  TH1  -  2029  -  copier paper
+
+  23:  ZZ0  -     5  -  wooden bookcase
+  24:  VL2  -  1017  -  paper clips
+
+  26:  PA1  -   102  -  filing cabinet
+  27:  AS2  -   100  -  metal waste basket
+  28:  XS6  -   103  -  pink pearl eraser
+  29:  DF5  -  1019  -  printer paper
+
+
+sort_print:
+   sorted hash table:
+   key    number    description
+   AA2  -    30  -  looseleaf binder
+   AS2  -   100  -  metal waste basket
+   AT4  -   404  -  desk calendar
+   BC3  -   628  -  pencil sharpener
+   CK7  -   516  -  wall calendar
+   DF5  -  1019  -  printer paper
+   FT7  -    25  -  metal bookshelf
+   GN2  -    15  -  electric typewriter
+   KT5  -    14  -  executive desk
+   PA1  -   102  -  filing cabinet
+   QJ8  -     1  -  IMB system/2 PC
+   TH1  -  2029  -  copier paper
+   VL2  -  1017  -  paper clips
+   XS6  -   103  -  pink pearl eraser
+   ZL0  -   606  -  manila file folder
+   ZZ0  -     5  -  wooden bookcase
+
+	*** end of program termination ***

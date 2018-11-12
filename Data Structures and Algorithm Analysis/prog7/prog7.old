@@ -1,0 +1,55 @@
+#include "/home/onyuksel/courses/340/common/340.h"
+#include "prog7.h"
+
+const vector < int > A { 1, -2, 3, -4, 5, -6, 7, -8, 9, -10, 11, -12,
+        13, -14, 15 };
+const vector < float > B { 0.5, 1.75, -3, 4.25, 5.50, -6.75, 8, 9.25,
+        -10.5 };
+const vector < string > C { "This", "is", "a", "list", "of", "string",
+        "objects." };
+
+using namespace std;
+
+int main ( )
+{
+    binTree < int > first;
+    for ( unsigned i = 0; i < A.size ( ); i++ )
+        first.insert ( A [ i ] );
+    first.inorder ( increase );
+
+
+    cout << "first:"; header ( first );
+    inOrder ( first, "first" ); cout << endl;
+
+    binTree < int > second ( first );
+    second.inorder ( decrease );
+
+    first.clear ( );
+    cout << "first:"; header ( first );
+    cout << "second:"; header ( second );
+    inOrder ( second, "second" ); cout << endl;
+
+    binTree < float > third, fourth;
+    for ( unsigned i = 0; i < B.size ( ); i++ )
+        third.insert ( B [ i ] );
+
+    cout << "third:"; header ( third );
+    third.inorder ( increase );
+    inOrder ( third, "third" ); cout << endl;
+
+    fourth = third;
+    cout << "fourth:"; header ( fourth );
+    fourth.inorder ( decrease );
+    inOrder ( fourth, "fourth" ); cout << endl;
+
+    binTree < string > fifth;
+    for ( unsigned i = 0; i < C.size ( ); i++ )
+        fifth.insert ( C [ i ] );
+
+    cout << "fifth:"; header ( fifth );
+    binTree <string> sixth = fifth;
+    cout << "sixth:"; header ( sixth );
+    inOrder ( sixth, "sixth" );
+
+    return 0;
+}

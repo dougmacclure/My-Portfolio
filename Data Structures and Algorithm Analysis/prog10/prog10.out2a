@@ -1,0 +1,112 @@
+	*** Hashing with linear probe ***
+
+insert: :HK3: 909:1 times anything        : entry = 1
+insert: :QH8: 918:end point               : entry = 22
+insert: :MH4:  16:catfish                 : entry = 6
+insert: :XZ4:2020:generative grammar      : entry = 3
+insert: :KL0: 117:double take             : entry = 13
+insert: :BH7: 722:imagination             : entry = 27
+insert: :KT5:3014:aardvark                : entry = 5
+insert: :UT7:2008:zirconium oxide         : entry = 8
+insert: :FA5: 221:headless horseman       : entry = 18
+insert: :MZ7:1826:milling machine         : entry = 29
+insert: :RZ5:2015:bookcase                : entry = 25
+insert: :AS2: 700:rate of exchange        : entry = 11
+insert: :ZH0: 603:unfashionable           : entry = 23
+insert: :KC8:1727:nitrogen narcosis       : entry = 24
+insert: :HA2: 319:follow through          : entry = 28
+insert: :ES9:1010:2 times 2 times 2       : entry = 20
+insert: :ZZ8:  23:jungle jack             : entry = 0
+insert: :AT4: 502:third base              : entry = 2
+insert: :YE6: 728:overqualified           : entry = 7
+insert: :BN1:8924:knock-down-drag-out     : entry = 19
+insert: :RE4:4311:3 plus 3 plus 3         : entry = 10
+insert: :VL2:9025:long-distance           : entry = 12
+insert: :XG2:5029:parliamentary law       : entry = 17
+insert: :AF0: 707:yankee yawl             : entry = 16
+insert: :ZJ0:1030:quantum number          : entry = 21
+insert: :TG9:   4:visual aid              : entry = 26
+insert: :RT8:1212:4 by 4                  : entry = 30
+insert: :DF5: 101:state university        : entry = 15
+insert: :SP3:8005:ways and means          : entry = 4
+insert: :MT4:1313:5 divided by pi         : entry = 9
+insert: :WA0:5006:x-coordinate            : entry = 14
+insert: :UP7:9999:erehwon                 :Table is full!
+insert: :GN2: 999:not this time           :Table is full!
+insert: :BN1:  99:still can't do it       :not inserted - duplicate key!!!
+search: key VL2 ==> number: 9025 - item: long-distance
+search: key UP7 not in table!!
+search: key KT5 ==> number: 3014 - item: aardvark
+search: key ZJ0 ==> number: 1030 - item: quantum number
+search: key UU2 not in table!!
+
+hTable_print:
+entry  key    number    description
+   0:  ZZ8  -    23  -  jungle jack
+   1:  HK3  -   909  -  1 times anything
+   2:  AT4  -   502  -  third base
+   3:  XZ4  -  2020  -  generative grammar
+   4:  SP3  -  8005  -  ways and means
+   5:  KT5  -  3014  -  aardvark
+   6:  MH4  -    16  -  catfish
+   7:  YE6  -   728  -  overqualified
+   8:  UT7  -  2008  -  zirconium oxide
+   9:  MT4  -  1313  -  5 divided by pi
+  10:  RE4  -  4311  -  3 plus 3 plus 3
+  11:  AS2  -   700  -  rate of exchange
+  12:  VL2  -  9025  -  long-distance
+  13:  KL0  -   117  -  double take
+  14:  WA0  -  5006  -  x-coordinate
+  15:  DF5  -   101  -  state university
+  16:  AF0  -   707  -  yankee yawl
+  17:  XG2  -  5029  -  parliamentary law
+  18:  FA5  -   221  -  headless horseman
+  19:  BN1  -  8924  -  knock-down-drag-out
+  20:  ES9  -  1010  -  2 times 2 times 2
+  21:  ZJ0  -  1030  -  quantum number
+  22:  QH8  -   918  -  end point
+  23:  ZH0  -   603  -  unfashionable
+  24:  KC8  -  1727  -  nitrogen narcosis
+  25:  RZ5  -  2015  -  bookcase
+  26:  TG9  -     4  -  visual aid
+  27:  BH7  -   722  -  imagination
+  28:  HA2  -   319  -  follow through
+  29:  MZ7  -  1826  -  milling machine
+  30:  RT8  -  1212  -  4 by 4
+
+sort_print:
+   sorted hash table:
+   key    number    description
+   AF0  -   707  -  yankee yawl
+   AS2  -   700  -  rate of exchange
+   AT4  -   502  -  third base
+   BH7  -   722  -  imagination
+   BN1  -  8924  -  knock-down-drag-out
+   DF5  -   101  -  state university
+   ES9  -  1010  -  2 times 2 times 2
+   FA5  -   221  -  headless horseman
+   HA2  -   319  -  follow through
+   HK3  -   909  -  1 times anything
+   KC8  -  1727  -  nitrogen narcosis
+   KL0  -   117  -  double take
+   KT5  -  3014  -  aardvark
+   MH4  -    16  -  catfish
+   MT4  -  1313  -  5 divided by pi
+   MZ7  -  1826  -  milling machine
+   QH8  -   918  -  end point
+   RE4  -  4311  -  3 plus 3 plus 3
+   RT8  -  1212  -  4 by 4
+   RZ5  -  2015  -  bookcase
+   SP3  -  8005  -  ways and means
+   TG9  -     4  -  visual aid
+   UT7  -  2008  -  zirconium oxide
+   VL2  -  9025  -  long-distance
+   WA0  -  5006  -  x-coordinate
+   XG2  -  5029  -  parliamentary law
+   XZ4  -  2020  -  generative grammar
+   YE6  -   728  -  overqualified
+   ZH0  -   603  -  unfashionable
+   ZJ0  -  1030  -  quantum number
+   ZZ8  -    23  -  jungle jack
+
+	*** end of program termination ***

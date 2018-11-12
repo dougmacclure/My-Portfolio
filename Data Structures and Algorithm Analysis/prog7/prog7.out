@@ -1,0 +1,42 @@
+first:tree is not empty
+	no of nodes    = 15
+	height of tree =  5
+
+The elements of 'first' in inorder:
+	-11 8 -3 12 -1 -9 -5 2 16 10 6 -13 4 14 -7 
+
+first:tree is empty
+	no of nodes    =  0
+	height of tree =  0
+
+second:tree is not empty
+	no of nodes    = 15
+	height of tree =  5
+
+The elements of 'second' in inorder:
+	-12 7 -4 11 -2 -10 -6 1 15 9 5 -14 3 13 -8 
+
+third:tree is not empty
+	no of nodes    =  9
+	height of tree =  4
+
+The elements of 'third' in inorder:
+	9 5.25 2.75 -5.75 1.5 -9.5 6.5 -2 10.25 
+
+fourth:tree is not empty
+	no of nodes    =  9
+	height of tree =  4
+
+The elements of 'fourth' in inorder:
+	8 4.25 1.75 -6.75 0.5 -10.5 5.5 -3 9.25 
+
+fifth:tree is not empty
+	no of nodes    =  7
+	height of tree =  4
+
+sixth:tree is not empty
+	no of nodes    =  7
+	height of tree =  4
+
+The elements of 'sixth' in inorder:
+	objects. list is string This of a 

@@ -1,0 +1,2 @@
+hTable.cc: In member function ‘void HT::hTable_print()’:
+hTable.cc:126:9: error: cannot convert ‘std::vector<Entry>::iterator {aka __gnu_cxx::__normal_iterator<Entry*, std::vector<Entry> >}’ to ‘int’ in assignment

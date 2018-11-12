@@ -1,0 +1,35 @@
+num_dept =   500  cust_id =   500  arr_time =  1524  dept_time =  1531  shop_time =  7
+num_dept =  1000  cust_id =   998  arr_time =  3004  dept_time =  3024  shop_time = 20
+num_dept =  1500  cust_id =  1503  arr_time =  4494  dept_time =  4498  shop_time =  4
+num_dept =  2000  cust_id =  2002  arr_time =  6013  dept_time =  6016  shop_time =  3
+num_dept =  2500  cust_id =  2502  arr_time =  7467  dept_time =  7479  shop_time = 12
+num_dept =  3000  cust_id =  3004  arr_time =  8935  dept_time =  8939  shop_time =  4
+num_dept =  3500  cust_id =  3499  arr_time = 10396  dept_time = 10417  shop_time = 21
+num_dept =  4000  cust_id =  4000  arr_time = 11902  dept_time = 11917  shop_time = 15
+num_dept =  4500  cust_id =  4500  arr_time = 13409  dept_time = 13422  shop_time = 13
+num_dept =  5000  cust_id =  5003  arr_time = 14952  dept_time = 14958  shop_time =  6
+num_dept =  5500  cust_id =  5500  arr_time = 16460  dept_time = 16466  shop_time =  6
+num_dept =  6000  cust_id =  5999  arr_time = 17991  dept_time = 18006  shop_time = 15
+num_dept =  6500  cust_id =  6500  arr_time = 19485  dept_time = 19494  shop_time =  9
+num_dept =  7000  cust_id =  6998  arr_time = 20973  dept_time = 20995  shop_time = 22
+num_dept =  7500  cust_id =  7501  arr_time = 22480  dept_time = 22497  shop_time = 17
+num_dept =  8000  cust_id =  7999  arr_time = 23958  dept_time = 23968  shop_time = 10
+num_dept =  8500  cust_id =  8502  arr_time = 25425  dept_time = 25437  shop_time = 12
+num_dept =  9000  cust_id =  9003  arr_time = 26922  dept_time = 26926  shop_time =  4
+num_dept =  9500  cust_id =  9501  arr_time = 28427  dept_time = 28431  shop_time =  4
+num_dept = 10000  cust_id = 10001  arr_time = 29848  dept_time = 29857  shop_time =  9
+num_dept = 10500  cust_id = 10499  arr_time = 31337  dept_time = 31354  shop_time = 17
+num_dept = 11000  cust_id = 11000  arr_time = 32833  dept_time = 32849  shop_time = 16
+num_dept = 11500  cust_id = 11499  arr_time = 34346  dept_time = 34363  shop_time = 17
+num_dept = 12000  cust_id = 12001  arr_time = 35841  dept_time = 35854  shop_time = 13
+num_dept = 12500  cust_id = 12503  arr_time = 37345  dept_time = 37351  shop_time =  6
+num_dept = 13000  cust_id = 13002  arr_time = 38881  dept_time = 38893  shop_time = 12
+num_dept = 13500  cust_id = 13503  arr_time = 40420  dept_time = 40427  shop_time =  7
+num_dept = 14000  cust_id = 13999  arr_time = 41882  dept_time = 41893  shop_time = 11
+
+total num of departures = 14426
+total simulation time   = 43200
+
+minimum shopping time   =  2
+maximum shopping time   = 24
+average shopping time   = 12.96
