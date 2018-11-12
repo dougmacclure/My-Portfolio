@@ -45,8 +45,8 @@ This code was written in Python 2.7 with weave.inline (for including C++ code to
 
 # MATLAB Code
 
-Various MATLAB projects are included, including an LU-decomposition algorithm, Newton's Method and Extended Secant Method for finding the zeros of a function, and various other projects.  
+Various MATLAB projects are included, including an LU-decomposition algorithm, Newton's Method and Extended Secant Method for finding the zeros of a function, Lagrange polynomial interpolation and various other projects.  
 
-#Intermediate C++ Programs
+# Intermediate C++ Programs
 
 
