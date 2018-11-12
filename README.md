@@ -47,6 +47,23 @@ This code was written in Python 2.7 with weave.inline (for including C++ code to
 
 Various MATLAB projects are included, including an LU-decomposition algorithm, Newton's Method and Extended Secant Method for finding the zeros of a function, Lagrange polynomial interpolation and various other projects.  
 
+# UNIX Scripts
+
+Various UNIX shell scripts and C++ code for various server administrative tasks.
+
+1) Assign12 - Build a TCP server that is designed to handle multiple requests for directory access of a specified path.  Client is able to list directory contents and view file contents.
+2) Assign11 - Build a UDP program which accesses a credit card server, sends it a credit card transaction and receives a message from the server.
+3) Assign10 - Create a pipe shell where within a loop, we query the user for two commands which are piped together with resulting output printed to cout
+4) Assign9  - A program which emulates the UNIX command "tee".  It takes input from standard input and copies it into multiple files.
+5) Assign8 and Assign7  - An awk script which is used to process a sales report log, and prints total sales for each employee
+6) Assign6 - UNIX script for four commands:  
+new -    Allows user to create a new database
+add -    Allows user to add new records into database file
+show -   Allows user to view specific records within database
+delete - Allows user to remove records from database
+7) Assign5 - A UNIX Spell-Checker bash script
+
+
 # Intermediate C++ Programs
 
 
