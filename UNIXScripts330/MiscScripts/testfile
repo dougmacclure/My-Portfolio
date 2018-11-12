@@ -1,0 +1,6 @@
+In navigation, a vehicle's course is the agle that the intended
+path of the vehicle makes with a fixed reference objekt 
+(typically truenorth). Course is measured in degrees from 0° 
+clockwise to 360° in ECMD compass convention (0° being north, 
+90° being east). Course is customarily expressed in three 
+digits, using preliminary zeros if needed.

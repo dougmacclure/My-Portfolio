@@ -1,0 +1,99 @@
+#! /bin/bash
+
+# exercise addressbook lookup script for CSCI 330
+
+# check PHONEBOOK file
+
+if [ ! -f "$PHONEBOOK" ]; then
+	echo "$PHONEBOOK does not exist"
+	exit 1
+fi
+
+if [ ! -r "$PHONEBOOK" ]; then
+	echo "$PHONEBOOK is not readable"
+	exit 1
+fi
+
+if [ ! -w "$PHONEBOOK" ]; then
+	echo "$PHONEBOOK is not writable"
+	exit 1
+fi
+
+# show the menu
+
+until [ "$response" = "q" ]
+do
+	echo "Please make your choice from: "
+	echo "s to search"
+	echo "a to add"
+	echo "d to delete"
+	echo "e to edit"
+	echo "q to quit"
+	
+# get user answer
+
+	read -p "make your selection: " response
+
+# react
+
+	case "$response" in
+		s)
+			read -p "Whom are you looking for ? " query
+			grep "$query" "$PHONEBOOK"
+		;;
+		a)
+			read -p "enter name: " name
+			read -p "enter number: " number
+			read -p "enter email: " email
+			printf "%s:%s:%s\n" "$name" "$number" "$email" >> "$PHONEBOOK"
+		;;
+		d)
+			read -p "Whom are you looking for ? " query
+			grep "$query" "$PHONEBOOK"
+			read -p "do you really want to delete these records (yes/no)? " confirm
+			if [ "$confirm" = "yes" ]; then
+				sed -i -e "/$query/d" "$PHONEBOOK"
+			fi
+		;;
+		e)
+			read -p "Which contact would you like to edit ? " query
+			count=`grep -c "$query" "$PHONEBOOK"`
+			if [ "$count" -eq 1 ]; then
+				# do the edit
+				# use cut to extract field
+				oldname=`grep "$query" "$PHONEBOOK" | cut -d: -f 1`
+				oldnumber=`grep "$query" "$PHONEBOOK" | cut -d: -f 2`
+				oldemail=`grep "$query" "$PHONEBOOK" | cut -d: -f 3`
+				# delete old record
+				sed -i -e "/$query/d" "$PHONEBOOK"
+				# get new value
+				echo "enter new values, or ENTER to keep current: "
+				read -p "enter name ($oldname): " name
+				read -p "enter number ($oldnumber): " number
+				read -p "enter email ($oldemail): " email
+				# if nothing entered, keep old values
+				if [ "$name" = "" ]; then
+					name=$oldname
+				fi
+				if [ "$number" = "" ]; then
+					number=$oldnumber
+				fi
+				if [ "$email" = "" ]; then
+					email=$oldemail
+				fi
+				# add new record in to file
+				printf "%s:%s:%s\n" "$name" "$number" "$email" >> "$PHONEBOOK"				
+			else
+				echo "$query matches more than one entry, please refine your search"
+			fi
+		;;
+		q)
+			echo "bye bye"
+		;;
+		*)	echo "only s, a, d, e, q are allowed"
+		;;
+	esac
+done
+
+
+

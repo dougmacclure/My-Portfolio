@@ -1,0 +1,249 @@
+#! /bin/bash
+#CSCI330
+#Assignment 6
+#Doug MacClure
+
+#using command line arguments, use a case statement to handle the 4 possible options
+#that this script is desgined to handle:
+#1: new -Allows user to create a new database
+#2: add -Allows user to add new records into database file ./dbname
+#3: show -Allows user to view specific records within database ./dbname
+#4: delete -Allows user to remove records from database ./dbname
+
+case $1 in 
+
+	new|NEW|New|n|N) 
+
+		#if ./dbname already exists, then print error message and exit, since 
+		#we don't want more than one database
+
+		if [ -f ./dbname ]; then
+			echo; echo "Database already exists!"; echo
+			exit 1;
+		
+		#otherwise if ./dbname doesn't exist, then create it, and create a header
+		#for it, which is either Automobile Database if user didn't specify, or
+		#whatever user entered after new
+		elif [ -z $2 ]; then
+			echo "Automobile Database" >> ./dbname
+
+		else
+			echo "$2" >> ./dbname
+		fi ;;
+
+	add|ADD|Add|a|A)
+
+		#Check if database file exists.  If not, print error message and exit script.
+
+		if [ ! -f ./dbname ]; then
+
+			echo "Error.  Database doesn't exist.  Create new database with new option"
+			exit 1
+
+		#Check if user has write permission on database file. If not, print error message and exit script.
+
+		elif [ ! -w ./dbname ]; then
+
+			echo "Error.  Cannot edit a file for which you do not have write permssions"				
+
+		#otherwise, user can edit file
+
+		else		
+
+			                #we want to make sure that the fourth command-line argument, the car's year
+                #is a number within the range of 1870-2020.  If it is, add the record to the 
+                #database, and print a message signifying success
+
+
+			if [ $4 -gt 1870 ] && [ $4 -lt 2020  ] && [ -f ./dbname ]; then
+
+				printf "%s, %s, %d, %s\n" "$2" "$3" "$4" "$5" >> ./dbname		
+				echo "Successfully added a record to the database"
+		
+			else 
+
+		#if not, print an error message and exit
+		
+				echo "Error, vehicle's year must be between 1870 and 2020."
+				exit 1;
+			fi
+		fi;;	
+
+	show|Show|SHOW|s|S)
+
+		#there are three options for the show case which wemust handle:
+		#1: single - show a single record
+		#2: range - show a range of records specified by user
+		#3: all - show all records of database
+
+	if [ ! -f ./dbname ]; then
+		
+		echo "Error.  File doesn't exist.  Create it with new option."
+		exit 1
+
+
+	elif [ ! -r ./dbname  ]; then	
+	
+		echo "Error.  Cannot read a file without read permission"
+		exit 1
+
+	else
+
+
+		if [ $2 = "single" ]; then
+	
+			#if user wants to show a single record, we want to print the line
+			#number that is one after the number signifying the record # and first line
+			result=$(($3+1))	
+			
+			sed -n -e '1p' ./dbname
+
+			sed -n "${result}p" ./dbname			
+
+		
+		
+		elif [ $2 = "range" ]; then
+	
+			#if user wants to show a range of record numbers, we need to make
+			#sure that the range is [x,y] such that x < y
+
+			if [ $3 -gt $4 ]; then
+			
+				#if x>y print error message, and exit with bad return status
+				echo "The first number in the range must be less than the last number"
+				exit 1
+
+			else
+
+				#otherwise, use sed to print a range of lines from 1 plus first record
+				#number to 1 plus last record number and first line
+			begin=$(($3+1)); end=$(($4+1))
+
+			sed -n -e '1p' ./dbname
+
+			sed -n -e "${begin}, ${end}p" ./dbname
+
+			fi
+
+		elif [ $2 = "all" ]; then
+
+			#if user wants to print all, simply use sed to print all of database file
+
+			sed -n '1, $p' ./dbname
+
+		else
+
+			#if none of the above conditions have been met, user entered wrong 
+			#syntax.  Prompt user of user's error, and inform user of correct
+			#syntax for show option.
+
+			echo "Invalid option.  Syntax for show is as follows:"
+			echo "show single [record#]"
+			echo "show range [begining record#] [ending record#]"
+			echo "show all"
+			exit 1
+			
+	
+		fi
+	
+	fi;;
+
+	delete|Delete|DELETE|d|D)
+	
+                #there are three options for the delete case which we must handle:
+                #1: single - delete a single record
+                #2: range - delete a range of records specified by user
+                #3: all - delete all records of database
+
+	#check if database file exists.  If not print error message and exit.
+	
+	if [ ! -f ./dbname ]; then
+
+		echo "Error.  File doesn't exist.  Create one with new option."
+		exit 1
+
+	#check if user has write permission on database file.  If not, print error message and exit.
+
+	elif [ ! -w ./dbname ]; then
+		
+		echo "Error. Cannot edit a file without write permission."
+		exit 1
+
+	#check if user has read permission on database file.  If not, print error message and exit.
+
+	elif [ ! -r ./dbname ]; then
+	
+		echo "Error.  Need read permission."
+		exit 1
+
+	#if user wants to delete a single record, use sed to delete line number
+	#1 + record number indicated by 3rd command line argument
+
+	else
+
+		if [ $2 = "single" ]; then
+
+			result=$(($3+1))			
+
+			sed -i -e "${result}d" ./dbname
+			echo "1 record deleted"
+		
+  
+		elif [ $2 = "range" ]; then
+
+
+			#if user wants to show a range of record numbers, we need to make
+                        #sure that the range is [x,y] such that x < y
+
+                        if [ $3 -gt $4 ]; then
+
+                                #if x>y print error message, and exit with bad return status
+                                echo "The first number in the range must be less than the last number"
+                                exit 1
+
+                        else
+
+                                #otherwise, use sed to delete a range of lines from 1 plus first record
+                                #number to 1 plus last record number
+
+				begin=$(($3+1)); end=$(($4+1))
+				records=$(($end-$begin+1))
+
+				sed -i -e "${begin}, ${end}d" ./dbname
+				echo "$records record(s) deleted"
+				
+
+			fi
+
+		elif [ $2 = "all" ]; then
+
+			#if user wants to delete all records, use sed to delete every line except for the first line, which is the header line
+
+			sed -i -e '1!d' ./dbname
+			echo "all records deleted"
+
+
+		else
+
+			#if none of above conditions are met, user entered wrong syntax
+			#inform user of syntax for delete option
+
+			echo "Invalid option.  Syntax for delete is as follows:"
+			echo "delete single [record#]"
+			echo "delete range [beginning record#] [ending record#]"
+			echo "delete all"
+
+		fi
+
+	fi;;
+	*)
+
+		#if user entered an option that isn't offered in any of the cases, user entered wrong syntax
+		#inform user of correct syntax
+		echo "Invalid option.  Choices are:"
+		echo "new, add, show, delete."
+		;;
+
+esac
+	
+			

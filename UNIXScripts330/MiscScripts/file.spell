@@ -1,0 +1,47 @@
+#! /bin/bash
+#format: z0125061.spell filename
+#UNIX Spell-Checker bash Script
+#Doug MacClure
+#CSCI330
+#Due: 2/27/13
+
+#check if the file that holds words we want to ignore exists, if not create it.  then begin creating out.put file for output 
+if [ ! -f ~/.memory ]; then
+	touch ~/.memory
+
+fi
+echo >> ./out.put; echo -e "MISPELLED:\t\tCORRECTIONS:" >> ./out.put; echo >> ./out.put; 
+
+donothing=0
+
+#begin a for loop that loops through the result of aspell list < $1 where $1 is filename which user passed in when calling script
+for index in `aspell list < $1`
+do
+
+	#also loop through our memory file to see if we should not prompt for any words the user previously wanted to keep
+	for index1 in `cat ~/.memory`
+	do
+	
+	if [ $index == $index1 ]; then
+		donothing=1
+	fi
+	done
+
+	#if the current index argument is not within the file .memory, then prompt user for correction
+	if [ $donothing -ne 1  ]; then
+		echo "'$index' is mispelled.  Press \"Enter\" to keep this spelling, or type a correction here: " 
+			read  correction
+			#if the user simply entered <enter>, then user wants to keep word, so send word to ~/.memory and donot send it to out.put
+			if [ -z "${correction-}" ]; then
+				echo $index >>  ~/.memory 
+			else
+			#otherwise, user wants a new spelling, so send index and correction to our out.put file
+				echo -e "$index\t\t\t$correction" >> out.put
+			
+			fi	
+	fi
+done
+
+#print the out.put then before script ends remove it
+cat ./out.put
+rm ./out.put

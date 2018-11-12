@@ -1,0 +1,12 @@
+dists/squeeze/updates/contrib/binary-amd64/Packages.bz2
+dists/squeeze/updates/contrib/debian-installer/binary-amd64/Packages.bz2
+dists/squeeze/updates/main/binary-amd64/Packages.bz2
+dists/squeeze/updates/main/debian-installer/binary-amd64/Packages.bz2
+dists/squeeze/updates/non-free/binary-amd64/Packages.bz2
+dists/squeeze/updates/non-free/debian-installer/binary-amd64/Packages.bz2
+dists/wheezy/updates/contrib/binary-amd64/Packages.bz2
+dists/wheezy/updates/contrib/debian-installer/binary-amd64/Packages.bz2
+dists/wheezy/updates/main/binary-amd64/Packages.bz2
+dists/wheezy/updates/main/debian-installer/binary-amd64/Packages.bz2
+dists/wheezy/updates/non-free/binary-amd64/Packages.bz2
+dists/wheezy/updates/non-free/debian-installer/binary-amd64/Packages.bz2

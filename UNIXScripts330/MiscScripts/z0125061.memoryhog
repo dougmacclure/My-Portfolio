@@ -1,0 +1,57 @@
+#! /bin/bash
+#format: z0125061.spell filename
+#UNIX Spell-Checker bash Script
+#Doug MacClure
+#CSCI330
+#Due: 2/27/13
+
+word=`aspell list < $1`
+equals=0
+if [ -f ~/.memory ]
+	then
+	savedwords=`cat ~/.memory`
+	
+	
+fi
+
+for index in ${word[*]}
+
+do
+
+	for index1 in ${savedwords[*]}
+	do
+		if [ $index = $index1 ]
+			then
+			equals=1
+		fi
+	done
+
+
+	if [ "$equals" -eq 0 ]
+
+	then 	
+		echo "'$index' is mispelled.  Press \"Enter\" to keep this spelling, or type a correction here: " 
+		read  correction
+		if [ -z "${correction-}" ]
+			then
+			echo $index >>  ~/.memory 
+						
+		
+		else
+			corrected=("${corrected[@]}" $correction)
+			wrong=("${wrong[@]}" $index)
+		fi
+	fi
+
+done
+
+echo
+echo -e "MISPELLED:\t\tCORRECTIONS:"
+echo
+i=0
+for index2 in ${wrong[*]}
+do
+	echo -e "${wrong[i]}\t\t\t${corrected[i]}"
+	i=$((i+1))
+done
+echo

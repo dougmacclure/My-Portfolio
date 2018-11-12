@@ -1,0 +1,79 @@
+#Doug MacClure
+#CSCI330-3 
+#Assignment 8
+#awk script used to process sales report, and print total sales for each employee
+
+#the header that provides a short description of what each field in output represents
+#and a short intro about the resulting output
+BEGIN {
+print "Lazy Lakes LLC"
+print "2012 Sales Associates Ranking"
+print "Name              Position    Sales Amount"
+print "==========================================" 
+
+#also in BEGIN pattern, we need to specify that the filed separator we are expecting from
+#our input is ":"
+FS=":"
+}
+
+#if the line we are reading has exactly 3 fields
+
+NF == 3 {
+#these lines describe associates
+#$1 = associate id
+#$2 = name
+#$3 = position
+#the name array will hold the second field (name) at index first field(associate id)
+
+name[$1] = $2
+
+#the job array will hold the position associated with the index name
+job[$2] = $3
+
+}
+
+#if the number of fields in the line is exactly 4
+
+NF == 4 {
+#these lines describe products
+#$1 = product id
+#$2 = description
+#$3 = price
+#$4 = product category (alnum)
+#we want to associate each product id with a unique price, to be used later
+price[$1] = $3
+
+}
+
+#if the number of fields in the line is exactly 5 and the fifth field begins with "12"
+
+NF == 5 && $5 ~ /\<12....\>/ {
+#these lines describe the amount of items of a specific type sold by a certain person
+#at a certain time
+#$1 = transaction id
+#$2 = associate id
+#$3 = product id
+#$4 = quantity
+#$5 = date
+
+#build an array where at the index indicated by associate id, we take the price array at index
+#field 3(product id), multiply it by field 4(quantity), and add it to what prodsales at index
+#field 2 (associate id) is holding
+prodsales[$2] += price[$3]*$4
+
+}
+
+
+#print desired results as a footer
+END {
+
+#loop through the prodsales array which holds total sales for each employee indicated by associd
+for (associd in prodsales )
+	{
+	
+	#print desired formatted output with respect to the 4th output field (field separater is whitespace) in descending numerical order
+	printf("%-17s %-9s %14.2f\n", name[associd], job[name[associd]], prodsales[associd]) | "sort -nr -k 4"	
+
+	}
+}
+
