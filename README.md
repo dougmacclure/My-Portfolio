@@ -1,13 +1,16 @@
 # Machine Learning Projects
 
-1) Fraud-Detection-Jupyter-Notebook
-Basic Classification Machine Learning Problem
+1) Fraud Detection Jupyter Notebook
+
+This is a Jupyter notebook consisting of Python3 code which constructs a binary classification model.  Ensemble models are considered and evaluated.
 
 DATA SOURCE: https://www.kaggle.com/mlg-ulb/creditcardfraud
 
 Coded in Python3
 
 2) Flight-Delay-Jupyter-Notebook
+
+This is a Jupyter notebook consisting of Python3 code which performs data management and feature building and constructs a logistic regression model.  The resulting model is trained using Jan, 2017 data and evaluated on the Jan 2017 validation data and Jan 2016 data. 
 
 DATA:
 
