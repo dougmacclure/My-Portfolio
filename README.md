@@ -7,7 +7,7 @@ DATA SOURCE: https://www.kaggle.com/mlg-ulb/creditcardfraud
 
 Coded in Python3
 
-1) Flight-Delay-Jupyter-Notebook
+2) Flight-Delay-Jupyter-Notebook
 
 DATA:
 
