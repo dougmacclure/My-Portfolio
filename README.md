@@ -69,4 +69,13 @@ Various UNIX shell scripts and C++ code for various server administrative tasks.
 
 # Intermediate C++ Programs
 
+A collection of 9 intermediate C++ programs.
 
+1) Assign9 - Build and sort lists using quicksort algorithm
+2) Assign8 - Tests the functionality of the Deque template class
+3) Assign7 - Tests the functionality of the Queue template class
+4) Assign6 - Tests the functionality of the Stack class
+5) Assign5 & Assign4 - Tests the functionality of the MyString class and friend functions
+6) Assign3 - Tests the functionality of the Verifier class
+7) Assign2 - Creates a store object which is used to process orders given in a txt file
+8) Assign1 - Converts user input into an integer - fun with numerology.  
