@@ -3,7 +3,7 @@
 
 1) Flight Delay Jupyter Notebook
 
-This is a Jupyter notebook consisting of Python3.7 code which performs data management and feature building and constructs a logistic regression model.  The resulting model is trained using Jan, 2017 data and evaluated on the Jan 2017 validation data and Jan 2016 data. 
+This is a Jupyter notebook consisting of Python3.7 code which performs data management and feature building and constructs an OLS regression model.  The resulting model is trained using Jan 2017 data and evaluated on the Jan 2017 validation data and Jan 2016 data. 
 
 DATA SOURCES:
 
