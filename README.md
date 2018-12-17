@@ -28,7 +28,9 @@ This is a Jupyter notebook consisting of Python3.7 code which constructs a binar
 
 DATA SOURCE: https://www.kaggle.com/mlg-ulb/creditcardfraud
 
+4) Fraud Detection Jupyter Notebook Part 2
 
+Same data source as 3) except other classification models are considered including Stochastic Gradient Descent with k-fold Cross Validation (including maximizing model precision and recall via threshold), Gaussian Naive Bayes Classification, Support Vector Machines, and grid search with cross-validation of hyper-paramaters of random forest classification models.  Further evaluation of SVMs will be considered.  The latter model was the most computationally expensive model.  Further research on using Python on an EMR cluster will be considered.  
 
 # AIC Presentation
 
