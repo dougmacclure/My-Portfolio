@@ -1,18 +1,11 @@
 # Machine Learning Projects
 
-1) Fraud Detection Jupyter Notebook
 
-This is a Jupyter notebook consisting of Python3 code which constructs a binary classification model.  Ensemble models are considered and evaluated.
+1) Flight Delay Jupyter Notebook
 
-DATA SOURCE: https://www.kaggle.com/mlg-ulb/creditcardfraud
+This is a Jupyter notebook consisting of Python3.7 code which performs data management and feature building and constructs a logistic regression model.  The resulting model is trained using Jan, 2017 data and evaluated on the Jan 2017 validation data and Jan 2016 data. 
 
-Coded in Python3
-
-2) Flight-Delay-Jupyter-Notebook
-
-This is a Jupyter notebook consisting of Python3 code which performs data management and feature building and constructs a logistic regression model.  The resulting model is trained using Jan, 2017 data and evaluated on the Jan 2017 validation data and Jan 2016 data. 
-
-DATA:
+DATA SOURCES:
 
 O'HARE DATA:
 https://www.transtats.bts.gov/DL_SelectFields.asp?Table_ID=236
@@ -22,6 +15,20 @@ https://www.ncdc.noaa.gov/cdo-web/datasets
 
 Model was inspired by  
 https://aws.amazon.com/blogs/big-data/powering-amazon-redshift-analytics-with-apache-spark-and-amazon-machine-learning/
+
+2) Fruit Classification Jupyter Notebook
+
+This is a Jupyter notebook consisting of Python3.6 code which utilizes TensorFlow to build a Deep Neural Network (activation function is ReLU (i.e., Max(0,z)) which is trained to classify a 100X100 3-channel color picture of one of 83 types of fruit.  We are using sparse_softmax_cross_entropy_with_logits to handle floating-point rounding errors.  Further model evaluation and alteration of hyperparameters will be coming soon.  
+
+DATA SOURCE: https://www.kaggle.com/moltean/fruits
+
+3) Fraud Detection Jupyter Notebook Part 1
+
+This is a Jupyter notebook consisting of Python3.7 code which constructs a binary classification model.  Ensemble models are considered and evaluated.
+
+DATA SOURCE: https://www.kaggle.com/mlg-ulb/creditcardfraud
+
+
 
 # AIC Presentation
 
