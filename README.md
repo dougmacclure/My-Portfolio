@@ -22,9 +22,11 @@ This is an R Markdown file consisting of R 3.6 code which executes all phases of
 
 "The data is related with direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be ('yes') or not ('no') subscribed."
 
+To view the report, see macclure_bankdepositsubscriptionmodel.md.  
+
 3) R Markdown Movie Recommendation Random-Effects Model 
 
-This is an R Markdown file consisting of R 3.6 code which executes all phases of model building from data extraction to model evaluation for a classification model and a corresponding html file.  The data comes from the movielens dataset found here: http://files.grouplens.org/datasets/movielens/ml-10m.zip.  This model is motivated by the "Netflix Challenge".  
+This is an R Markdown file consisting of R 3.6 code which executes all phases of model building from data extraction to model evaluation for a classification model and a corresponding html file.  The data comes from the movielens dataset found here: http://files.grouplens.org/datasets/movielens/ml-10m.zip.  This model is motivated by the "Netflix Challenge".  To view the report, see macclure_movielens.md.  
 
 
 4) Fruit Classification Jupyter Notebook
