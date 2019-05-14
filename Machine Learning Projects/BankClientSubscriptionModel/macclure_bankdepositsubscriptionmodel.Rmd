@@ -2,7 +2,7 @@
 title: "Client Term Bank Deposit Subscription Model"
 author: "Doug MacClure"
 date: "5/13/2019"
-output: html_document
+output: rmarkdown::github_document
 fig_width: 6
 
 ---
