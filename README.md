@@ -16,19 +16,30 @@ https://www.ncdc.noaa.gov/cdo-web/datasets
 Model was inspired by  
 https://aws.amazon.com/blogs/big-data/powering-amazon-redshift-analytics-with-apache-spark-and-amazon-machine-learning/
 
-2) Fruit Classification Jupyter Notebook
+2) R Markdown Bank Client-Subscription Model
+
+This is an R Markdown file consisting of R 3.6 code which executes all phases of model building from data extraction to model evaluation for a classification model and a corresponding html file.  The data and a detailed description of the data can be found here: https://archive.ics.uci.edu/ml/datasets/Bank+Marketing.  A brief description of the data from the website is as follows:
+
+"The data is related with direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be ('yes') or not ('no') subscribed."
+
+3) R Markdown Movie Recommendation Random-Effects Model 
+
+This is an R Markdown file consisting of R 3.6 code which executes all phases of model building from data extraction to model evaluation for a classification model and a corresponding html file.  The data comes from the movielens dataset found here: http://files.grouplens.org/datasets/movielens/ml-10m.zip.  This model is motivated by the "Netflix Challenge".  
+
+
+4) Fruit Classification Jupyter Notebook
 
 This is a Jupyter notebook consisting of Python3.6 code which utilizes TensorFlow to build a Deep Neural Network (activation function is ReLU (i.e., Max(0,z)) which is trained to classify a 100X100 3-channel color picture of one of 83 types of fruit.  We are using sparse_softmax_cross_entropy_with_logits to handle floating-point rounding errors.  Further model evaluation and alteration of hyperparameters will be coming soon.  
 
 DATA SOURCE: https://www.kaggle.com/moltean/fruits
 
-3) Fraud Detection Jupyter Notebook Part 1
+5) Fraud Detection Jupyter Notebook Part 1
 
 This is a Jupyter notebook consisting of Python3.7 code which constructs a binary classification model.  Ensemble models are considered and evaluated.
 
 DATA SOURCE: https://www.kaggle.com/mlg-ulb/creditcardfraud
 
-4) Fraud Detection Jupyter Notebook Part 2
+6) Fraud Detection Jupyter Notebook Part 2
 
 Same data source as 3) except other classification models are considered including Stochastic Gradient Descent with k-fold Cross Validation (including maximizing model precision and recall via threshold), Gaussian Naive Bayes Classification, Support Vector Machines, and grid search with cross-validation of hyper-paramaters of random forest classification models.  Further evaluation of SVMs will be considered.  The latter model was the most computationally expensive model.  Further research on using Python on an EMR cluster will be considered.  
 
