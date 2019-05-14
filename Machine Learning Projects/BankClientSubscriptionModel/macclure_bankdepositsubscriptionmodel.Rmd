@@ -337,7 +337,7 @@ conf1 <- confusionMatrix(data = y_hat1, reference = as.factor(test_y))
 
 ```
 
-```{r naive bayes output, include=FALSE}
+```{r naive bayes output, echo=FALSE}
 model <- c("Full", "Reduced")
 specbayes <- c(conf$byClass["Specificity"], conf1$byClass["Specificity"]) 
 accbayes <- c(conf$overall["Accuracy"], conf1$overall["Accuracy"])

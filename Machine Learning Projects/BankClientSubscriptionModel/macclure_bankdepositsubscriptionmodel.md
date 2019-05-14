@@ -228,6 +228,11 @@ Clearly, we see a small improvement in specificity when using the
 reduced model. However, are we able to improve this result? We will see
 that indeed we can.
 
+| model   |  accuracy | specificity |
+| :------ | --------: | ----------: |
+| Full    | 0.8340078 |    0.469521 |
+| Reduced | 0.8343315 |    0.371553 |
+
 Perhaps surprisingly, we see a marked decline in specificity from 47% to
 37% when we use the reduced model instead of the full model. In fact,
 the author has tried many different models using default parameters,
