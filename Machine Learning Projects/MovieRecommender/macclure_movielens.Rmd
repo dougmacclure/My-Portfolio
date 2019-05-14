@@ -2,7 +2,7 @@
 title: "Movie Recommendation Model"
 author: "Doug MacClure"
 date: "5/1/2019"
-output: html_document
+output: rmarkdown::github_document
 
 ---
 
