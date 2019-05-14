@@ -226,7 +226,7 @@ algorithm using all model variables.
 
 Clearly, we see a small improvement in specificity when using the
 reduced model. However, are we able to improve this result? We will see
-that indeed we can.
+that indeed we can using the Naive Bayes generative model.
 
 | model   |  accuracy | specificity |
 | :------ | --------: | ----------: |
