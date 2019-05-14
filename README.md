@@ -16,13 +16,15 @@ https://www.ncdc.noaa.gov/cdo-web/datasets
 Model was inspired by  
 https://aws.amazon.com/blogs/big-data/powering-amazon-redshift-analytics-with-apache-spark-and-amazon-machine-learning/
 
-2) Bank Client-Subscription Model
+2) R Markdown Bank Client-Subscription Model
 
 This is an R Markdown file consisting of R 3.6 code which executes all phases of model building from data extraction to model evaluation for a classification model and a corresponding html file.  The data and a detailed description of the data can be found here: https://archive.ics.uci.edu/ml/datasets/Bank+Marketing.  A brief description of the data from the website is as follows:
 
 "The data is related with direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be ('yes') or not ('no') subscribed."
 
+3) R Markdown Movie Recommendation Random-Effects Model 
 
+This is an R Markdown file consisting of R 3.6 code which executes all phases of model building from data extraction to model evaluation for a classification model and a corresponding html file.  The data comes from the movielens dataset found here: http://files.grouplens.org/datasets/movielens/ml-10m.zip.  This model is motivated by the "Netflix Challenge".  
 
 
 4) Fruit Classification Jupyter Notebook
