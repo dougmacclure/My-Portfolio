@@ -55,11 +55,21 @@ has considered regression and classification models, but the structure
 of the data is inappropriate for such analysis, particularly on laptops,
 due to memory constraints.
 
-We begin by considering movie and user effects on the variable we wish
-to predict: rating.
+First, to get an idea of the baseline we are working with, consider the
+RMSE if we consider the constant-effects model: \(Y = \mu\), where we
+simply assign every movie the average movie rating among all movies and
+all ratings.
+
+| method                 |     RMSE |
+| :--------------------- | -------: |
+| Constant Effects Model | 1.060651 |
+
+The way to interpret this RMSE is that the constant effects model can be
+expected to be within a 1-star rating of the true user rating of the
+movie. Can we do better?
 
 Now, lets analyze the following potential random-effects model:
-\[Y_{u,i} = \mu + b_i + b_u,\] where \(\mu\) is a constant which
+\[Y_{u} = \mu + b_u + b_i,\] where \(\mu\) is a constant which
 represents the overall mean movie rating from all users for all movies.
 Here, \(b_i\) is the movie and \(b_u\) are random variables, dependent
 upon a user \(u\) and movie \(i\). To be more specific, \(b_i\) is the
@@ -68,27 +78,107 @@ overall average movie rating for all movies (i.e., the movie effect),
 while \(b_u\) is the average difference between movies \(i\) rated by
 user \(u\) and the sum of \(\mu\) and \(b_i\) (i.e., the user effect).
 
-Using R version 3.6, we have a RMSE score of 0.8655329. The author has
-observed other RMSE scores by running the code with R version 3.5.2. We
-can also determine how the model is performing by considering the
-residual distribution. Note that the mean is centered at zero and the
-distribution is approximately normal. This is a good indication that the
-model is neither over-estimating nor under-estimating on
+First, consider the incremental improvement in RMSE when using the
+user-effects model versus the movie and user effects model.
+
+| method                     |      RMSE |
+| :------------------------- | --------: |
+| Constant Effects Model     | 1.0606506 |
+| User Effects Model         | 0.9945538 |
+| Movie + User Effects Model | 0.8655329 |
+
+Using R version 3.6, we have a RMSE score of 0.8655329 in using both
+user and movie effects. Now, note that we can do better than this.
+Consider the following information.
+
+| movie\_rating\_stdev |
+| -------------------: |
+|            0.4861842 |
+
+| title                                     |       b\_i |
+| :---------------------------------------- | ---------: |
+| Besotted (2001)                           | \-3.012464 |
+| Grief (1993)                              | \-3.012464 |
+| Besotted (2001)                           | \-3.012464 |
+| Hi-Line, The (1999)                       | \-3.012464 |
+| Accused (Anklaget) (2005)                 | \-3.012464 |
+| War of the Worlds 2: The Next Wave (2008) | \-2.762464 |
+| War of the Worlds 2: The Next Wave (2008) | \-2.762464 |
+| SuperBabies: Baby Geniuses 2 (2004)       | \-2.698905 |
+| SuperBabies: Baby Geniuses 2 (2004)       | \-2.698905 |
+| SuperBabies: Baby Geniuses 2 (2004)       | \-2.698905 |
+
+| title                                               |     b\_i |
+| :-------------------------------------------------- | -------: |
+| Constantine’s Sword (2007)                          | 1.487536 |
+| Sun Alley (Sonnenallee) (1999)                      | 1.487536 |
+| Fighting Elegy (Kenka erejii) (1966)                | 1.487536 |
+| Satan’s Tango (SÃ¡tÃ¡ntangÃ³) (1994)                | 1.487536 |
+| Shadows of Forgotten Ancestors (1964)               | 1.487536 |
+| Satan’s Tango (SÃ¡tÃ¡ntangÃ³) (1994)                | 1.487536 |
+| Hellhounds on My Trail (1999)                       | 1.487536 |
+| Blue Light, The (Das Blaue Licht) (1932)            | 1.487536 |
+| Human Condition II, The (Ningen no joken II) (1959) | 1.320869 |
+| Human Condition II, The (Ningen no joken II) (1959) | 1.320869 |
+
+The variance in movie effects is quite high, despite the relatively
+small improvement in incorporating movie effects into our model. Also,
+as we can see from the above table, most of the worst and best rated
+movies are relatively unknown, and have very few ratings associated with
+them. This is one source of the relatively large variance. Since the
+error equation for a model is given by
+
+\[Bias^2 + Variance + \epsilon\]
+
+where \(\epsilon\) is irreducible error that cannot be reduced by
+reducing bias and variance.
+
+We will reduce the variance in this model by considering **ridge
+regresssion**. In ridge regression, we reduce the variance a variable
+includes into a model by including a penalty term in the residual sum of
+squares equation which gets larger when \(b_i^2\) and \(b_u^2\) get
+large:
+\[\frac{1}{N}\sum_{u,i}(y_{u,i} - \mu - b_i - b_u)^2 + \lambda \left( \sum_{i}b_i^2+\sum_ub_u^2 \right).\]
+Now, we wish to find the optimal \(\lambda\) such that the above is
+minimized. We can do this by taking partial derivatives with respect to
+\(b_i\) and \(b_u\), and set them to zero. This reduces to a standard
+Calculus III problem, except \(b_i\) and \(b_u\) both depend on the
+paramter \(\lambda\). To be more specific, we have that
+\[\hat b_i (\lambda) = \frac{1}{n_i+\lambda}\sum_{i=1}^{n_i}(Y_{u,i}-\mu) \]
+\[\hat b_u(\lambda) = \frac{1}{n_u+\lambda}\sum_{u=1}^{n_u}(Y_{u,i}-\mu - \hat{b_i}(\lambda)) \]
+
+To find the approximately optimal \(\lambda\), it is important that we
+**DO NOT** determine the optimal \(\lambda\) using the test set\! Doing
+so is considered a fatal error in machine learning. The reason for this
+is because we are not approximating how the optimized model would run on
+live data. We’ve already tuned the model to both the training AND test
+sets. Hence, there is no final validation of the model. Hence, we tune
+\(\lambda\) using the training set and determine the performance of the
+model on the test/validation set.
+
+![](macclure_movielens_files/figure-gfm/lambdas%20plot-1.png)<!-- --> As
+we can see, optimally \(\lambda \approx 0.5\). Now, consider the
+improvement when considering regularization.
+
+The author has observed other RMSE scores by running the code with R
+version 3.5.2. We can also determine how the model is performing by
+considering the residual distribution. Note that the mean is centered at
+zero and the distribution is approximately normal. This is a good
+indication that the model is neither over-estimating nor
+under-estimating on
 average.
 
 ![](macclure_movielens_files/figure-gfm/movie-user%20residual%20histogram-1.png)<!-- -->
 
 Next, we consider incorporating genres-effects into our random-effects
 model. Do we see an improvement in RMSE? Our new model is:
-\[Y_{u,i} = \mu + b_i + b_u + g_{u,i}.\] Observe the new residual
-distribution is essentially the same as before. Hence, we are starting
-to see diminishing returns in including more random-effects variables
-into our model.
-
-![](macclure_movielens_files/figure-gfm/with%20genres-1.png)<!-- -->
+\[Y_{u,i} = \mu + \hat{b_i}(\lambda) + \hat{b_u}(\lambda) + g_{u,i}.\]
+Observe the new residual distribution is essentially the same as before.
+Hence, we are starting to see diminishing returns in including more
+random-effects variables into our model.
 
 Despite diminishing returns, we do see a decrease in RMSE of
-\(\approx 0.0003\). To finish, we incorporate time effects. However,
+\(\approx 0.0004\). To finish, we incorporate time effects. However,
 before we do so, we need to note that timestamp is a number representing
 the number of minute since 01-01-1970 00:00. Note that we need to reduce
 the granularity of such a variable, since each particular timestamp will
@@ -103,24 +193,26 @@ observations we are considering.
 Hence, the granularity of the time effect is by week. Further, observe
 that the new residual histogram is again essentially the same as before.
 
-![](macclure_movielens_files/figure-gfm/time%20effects-1.png)<!-- -->
-
 ## Results
 
 Finally, we compare the RMSE of each random-effects model to determine
 the best model, and if this model is satisfactory.
 
-| method                                    |      RMSE |
-| :---------------------------------------- | --------: |
-| Movie + User Effects Model                | 0.8655329 |
-| Movie + User + Genre Effects Model        | 0.8651946 |
-| Movie + User + Genre + Time Effects Model | 0.8650986 |
+| method                                         |      RMSE |
+| :--------------------------------------------- | --------: |
+| Constant Effects Model                         | 1.0606506 |
+| User Effects Model                             | 0.9945538 |
+| Movie + User Effects Model                     | 0.8655329 |
+| Regularized Movie + User Effects Model         | 0.8653901 |
+| Genre + Regulraized Movie + User Effects Model | 0.8650573 |
+| Movie + User + Genre + Time Effects Model      | 0.8649572 |
 
 We see that for \(d_{u,i}\) denoting the random variable associated with
 the average rating of movie \(u\) by user \(i\) during a given week, the
 best performing model of the three is model 3:
-\[Y_{u,i} \approx \mu + b_u + b_i + g_{u,i} + d_{u,i}.\] Here, the RMSE
-is 0.8650986., which is well below the target RMSE of 0.87750.
+\[Y_{u,i} \approx \mu + \hat{b_u}(\lambda) + \hat{b_i}(\lambda) + g_{u,i} + d_{u,i}.\]
+Here, the RMSE is 0.86495722., which is well below the target RMSE of
+0.87750.
 
 Now, note that the author has considered generative model techniques as
 well. However, using Naive Bayes thus far has been unable to yield a
@@ -134,5 +226,5 @@ a model which meets the initial goal of having the predictive power
 where the RMSE is below 0.8775.
 
 There is room for further improvement in this model. The author would
-like to eventually try ensemble models, where regression and
-classification are done on smaller and more computable subsets.
+like to eventually try ensemble models, where regression and is done on
+smaller and more computable subsets.

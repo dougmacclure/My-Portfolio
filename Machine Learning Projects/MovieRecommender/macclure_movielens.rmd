@@ -1,0 +1,365 @@
+---
+title: "Movie Recommendation Model"
+author: "Doug MacClure"
+date: "5/1/2019"
+output: rmarkdown::github_document
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+In this report, we analyze the movielens data set (found here: <http://files.grouplens.org/datasets/movielens/ml-10m.zip>) and construct various bias/effects-based recommendation algorithms using 90% of the movielens dataset.  Other potential recommendation algorithms are discussed, and our approach using bias/effects instead is justified.  
+
+This project is done for the Data Science Capstone assignment via HarvardX.  HarvardX has provided code up to creating training and validation datasets.  The goal of this model is to create a recommendation model which predicts user-defined movie ratings evaluated on a validation dataset with root-mean squared error less than 0.87750.
+
+To begin, perform the following steps: install (if necessary) and load the required packages to run the R code: caret, lubridate and tidyverse.  Next, download the required data, and wrangle/coerce data for analysis.  Finally, split the prepared data into training and validation datasets. 
+
+```{r load libraries, include=FALSE}
+
+if(!require(tidyverse)) install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+if(!require(caret)) install.packages("caret", repos = "http://cran.us.r-project.org")
+if(!require(lubridate)) install.packages("lubridate", repos = "http://cran.us.r-project.org")
+```
+
+  
+
+```{r getdata, include=FALSE}
+dl <- tempfile()
+download.file("http://files.grouplens.org/datasets/movielens/ml-10m.zip", dl)
+
+ratings <- read.table(text = gsub("::", "\t", readLines(unzip(dl, "ml-10M100K/ratings.dat"))),
+                      col.names = c("userId", "movieId", "rating", "timestamp"))
+
+movies <- str_split_fixed(readLines(unzip(dl, "ml-10M100K/movies.dat")), "\\::", 3)
+colnames(movies) <- c("movieId", "title", "genres")
+movies <- as.data.frame(movies) %>% mutate(movieId = as.numeric(levels(movieId))[movieId],
+                                           title = as.character(title),
+                                           genres = as.character(genres))
+
+movielens <- left_join(ratings, movies, by = "movieId")
+```
+
+ 
+
+```{r make train/test sets, include=FALSE}
+# Validation set will be 10% of MovieLens data
+
+set.seed(1)
+test_index <- createDataPartition(y = movielens$rating, times = 1, p = 0.1, list = FALSE)
+edx <- movielens[-test_index,]
+temp <- movielens[test_index,]
+
+# Make sure userId and movieId in validation set are also in edx set
+
+validation <- temp %>% 
+  semi_join(edx, by = "movieId") %>%
+  semi_join(edx, by = "userId")
+
+# Add rows removed from validation set back into edx set
+
+removed <- anti_join(temp, validation)
+edx <- rbind(edx, removed)
+
+rm(dl, ratings, movies, test_index, temp, movielens, removed)
+
+```
+
+We begin our analysis of the data by noting which potential predictive variables we have to work with.
+
+```{r variables, include=FALSE}
+names <- names(edx)
+datatypes <- c(class(edx$userId), class(edx$movieId), class(edx$rating), class(edx$timestamp), class(edx$title), class(edx$genres))
+data_frame(variable_name = names, data_type = datatypes) %>% knitr::kable()
+
+
+```
+
+Note that the purpose of this model is to predict the rating a user would give for a given movie.  Hence, we wish to build a model which predicts a movie rating given a userId and movieId.  There are other predictors we can consider. Consider the following frequency histogram for number of movies rated per user.
+
+
+```{r user quantity rating avg histogram, echo=FALSE}
+
+avg_number_user_ratings <- edx %>% group_by(userId) %>% summarize(n = n())
+hist(avg_number_user_ratings$n)
+
+```
+
+Most users rate less than 500 movies, and some users rate many movies.  However, the average number of movies rated is:
+
+```{r user rating quantity mean, echo=FALSE}
+print(mean(avg_number_user_ratings$n))
+```
+
+Hence, we have enough data and variation in the data to build a movie recommendation model, which is further verified by considering the movie-rating distribution. 
+
+```{r rating avg histogram, echo=FALSE}
+
+hist(edx$rating)
+
+```
+
+## Model Construction and Analysis
+
+Now, note that the approach discussed here will utilize a random-effects approach, where the predictors are considered random variables, which depend on userId and movieId, as opposed to fixed quantities.  The author has considered regression and classification models, but the structure of the data is inappropriate for such analysis, particularly on laptops, due to memory constraints.
+
+```{r movie-user effects, include=FALSE}
+
+#OVERALL MEAN
+mu <- mean(edx$rating)
+
+#MOVIE EFFECTS/BIAS
+movie_avgs <- edx %>%
+  group_by(movieId) %>%
+  summarize(b_i = mean(rating-mu))
+
+#USER EFFECTS/BIAS
+user_avgs <- edx %>%
+  left_join(movie_avgs, by='movieId') %>%
+  group_by(userId) %>%
+  summarize(b_u = mean(rating - mu - b_i))
+edx1 <- edx %>% left_join(movie_avgs, by='movieId')   %>%
+  left_join(user_avgs, by = 'userId')
+```
+
+
+First, to get an idea of the baseline we are working with, consider the RMSE if we consider the constant-effects model: $Y = \mu$, where we simply assign every movie the average movie rating among all movies and all ratings.  
+
+```{r RMSE constant effects, echo=FALSE}
+
+predicted_ratings <- validation %>%
+  mutate(pred=mu) %>% .$pred
+
+model_1_rmse <- RMSE(predicted_ratings, validation$rating)
+rmse_results <- data_frame(method = "Constant Effects Model",
+                           RMSE = model_1_rmse)
+rmse_results %>% knitr::kable()
+```
+
+The way to interpret this RMSE is that the constant effects model can be expected to be within a 1-star rating of the true user rating of the movie.  Can we do better?  
+
+Now, lets analyze the following potential random-effects model: 
+\[Y_{u} = \mu + b_u + b_i,\] where $\mu$ is a constant which represents the overall mean movie rating from all users for all movies. Here, $b_i$ is the movie and $b_u$ are random variables, dependent upon a user $u$ and movie $i$.  To be more specific, $b_i$ is the average difference between a movie rating for movie $i$ and the overall average movie rating for all movies (i.e., the movie effect), while $b_u$ is the average difference between movies $i$ rated by user $u$ and the sum of $\mu$ and $b_i$ (i.e., the user effect).
+
+First, consider the incremental improvement in RMSE when using the user-effects model versus the movie and user effects model.  
+
+
+
+```{r movie-user effects evaluation, echo=FALSE}
+#GET BASELINE MOVIE-USER EFFECTS MODEL RMSE
+
+predicted_ratings <- validation %>%
+  #left_join(movie_avgs, by = 'movieId') %>%
+  left_join(user_avgs, by='userId') %>%
+  mutate(pred = mu + b_u) %>%
+  .$pred
+
+model_2_rmse <- RMSE(predicted_ratings, validation$rating)
+rmse_results <- bind_rows(rmse_results, 
+                          data_frame(method = "User Effects Model",
+                                     RMSE = model_2_rmse))
+
+predicted_ratings <- validation %>%
+  left_join(movie_avgs, by = 'movieId') %>%
+  left_join(user_avgs, by='userId') %>%
+  mutate(pred = mu + b_u + b_i) %>%
+  .$pred
+
+model_3_rmse <- RMSE(predicted_ratings, validation$rating)
+rmse_results <- bind_rows(rmse_results, 
+                          data_frame(method = "Movie + User Effects Model",
+                                     RMSE = model_3_rmse))
+
+rmse_results %>% knitr::kable()
+```
+
+Using R version 3.6, we have a RMSE score of 0.8655329 in using both user and movie effects.  Now, note that we can do better than this.  Consider the following information. 
+
+
+```{r stdev b_i, echo=FALSE}
+movie_rating_stdev <- sd(edx1$b_i)
+data_frame(movie_rating_stdev = movie_rating_stdev) %>% knitr::kable()
+#head(edx1)
+
+edx1 %>% arrange(b_i) %>% select(title,b_i) %>% slice(1:10) %>% knitr::kable()
+edx1 %>% arrange(desc(b_i)) %>% select(title,b_i) %>% slice(1:10) %>% knitr::kable()
+
+
+```
+
+The variance in movie effects is quite high, despite the relatively small improvement in incorporating movie effects into our model.  Also, as we can see from the above table, most of the worst and best rated movies are relatively unknown, and have very few ratings associated with them.  This is one source of the relatively large variance.  Since the error equation for a model is given by 
+
+\[Bias^2 + Variance + \epsilon\]
+
+where $\epsilon$ is irreducible error that cannot be reduced by reducing bias and variance.  
+
+We will reduce the variance in this model by considering **ridge regresssion**.  In ridge regression, we reduce the variance a variable includes into a model by including a penalty term in the residual sum of squares equation which gets larger when $b_i^2$ and $b_u^2$ get large:
+\[\frac{1}{N}\sum_{u,i}(y_{u,i} - \mu - b_i - b_u)^2 + \lambda \left( \sum_{i}b_i^2+\sum_ub_u^2 \right).\]
+Now, we wish to find the optimal $\lambda$ such that the above is minimized.  We can do this by taking partial derivatives with respect to $b_i$ and $b_u$, and set them to zero.  This reduces to a standard Calculus III problem, except $b_i$ and $b_u$ both depend on the paramter $\lambda$.  To be more specific, we have that
+\[\hat b_i (\lambda) = \frac{1}{n_i+\lambda}\sum_{i=1}^{n_i}(Y_{u,i}-\mu) \]
+\[\hat b_u(\lambda) = \frac{1}{n_u+\lambda}\sum_{u=1}^{n_u}(Y_{u,i}-\mu - \hat{b_i}(\lambda)) \]
+
+To find the approximately optimal $\lambda$, it is important that we **DO NOT** determine the optimal $\lambda$ using the test set!  Doing so is considered a fatal error in machine learning.  The reason for this is because we are not approximating how the optimized model would run on live data.  We've already tuned the model to both the training AND test sets.  Hence, there is no final validation of the model.  Hence, we tune $\lambda$ using the training set and determine the performance of the model on the test/validation set.  
+
+```{r cross-validation lambda, echo=FALSE}
+lambdas <- seq(0,10,0.25)
+rmses <- sapply(lambdas, function(l){
+  b_i <- edx %>%
+    group_by(movieId) %>%
+    summarize(b_i = sum(rating-mu)/(n()+l))
+  
+  b_u <- edx %>%
+    left_join(b_i, by = "movieId") %>%
+    group_by(userId) %>%
+    summarize(b_u = sum(rating - b_i - mu)/(n()+l))
+  
+  predicted_ratings <- edx %>%
+    left_join(b_i, by = "movieId") %>%
+    left_join(b_u, by = "userId") %>%
+    mutate(pred = mu + b_i + b_u) %>% .$pred
+  
+  return(RMSE(predicted_ratings, edx$rating))
+  
+})
+```
+
+```{r lambdas plot, echo=FALSE}
+library(ggplot2)
+data <- data.frame(lambdas = lambdas, rmses = rmses)
+data %>% ggplot(aes(x=lambdas, y=rmses)) + geom_point(aes(x=lambdas, y = rmses))
+```
+As we can see, optimally $\lambda \approx 0.5$.  Now, consider the improvement when considering regularization.  
+
+```{r set b_i and b_u with regularization, echo=FALSE}
+movie_reg <- edx %>%
+    group_by(movieId) %>%
+    summarize(bhat_i = sum(rating-mu)/(n()+0.6))
+  
+user_reg <- edx %>%
+    left_join(movie_reg, by = "movieId") %>%
+    group_by(userId) %>%
+    summarize(bhat_u = sum(rating - bhat_i - mu)/(n()+0.6))
+  
+predicted_ratings <- validation %>%
+  left_join(movie_reg, by = 'movieId') %>%
+  left_join(user_reg, by='userId') %>%
+  mutate(pred = mu + bhat_u + bhat_i) %>%
+  .$pred
+
+model_4_rmse <- RMSE(predicted_ratings, validation$rating)
+rmse_results <- bind_rows(rmse_results, 
+                          data_frame(method = "Regularized Movie + User Effects Model",
+                                     RMSE = model_4_rmse))
+
+```
+
+The author has observed other RMSE scores by running the code with R version 3.5.2.  We can also determine how the model is performing by considering the residual distribution.  Note that the mean is centered at zero and the distribution is approximately normal.  This is a good indication that the model is neither over-estimating nor under-estimating on average.  
+
+```{r movie-user residual histogram,echo=FALSE}
+residual1 <- predicted_ratings - validation$rating
+histogram(residual1)
+```
+
+Next, we consider incorporating genres-effects into our random-effects model.  Do we see an improvement in RMSE?  Our new model is: 
+\[Y_{u,i} = \mu + \hat{b_i}(\lambda) + \hat{b_u}(\lambda) + g_{u,i}.\]
+Observe the new residual distribution is essentially the same as before.  Hence, we are starting to see diminishing returns in including more random-effects variables into our model.  
+
+
+```{r genres effects, include=FALSE}
+
+#COMPUTE RATING AVERAGES BY GENRE
+genre_avgs <- edx %>%
+  left_join(movie_reg, by = 'movieId') %>%
+  left_join(user_reg, by = 'userId') %>%
+  group_by(genres) %>%
+  summarize(g_ui = mean(rating - mu - bhat_i - bhat_u))
+
+#INCLUDE GENRES EFFECTS INTO MODEL
+predicted_ratings2 <- validation %>%
+  left_join(movie_reg, by = 'movieId') %>%
+  left_join(user_reg, by='userId') %>%
+  left_join(genre_avgs, by = 'genres') %>%
+  mutate(pred = mu + bhat_i + bhat_u + g_ui) %>%
+  .$pred
+
+#COMPUTE NEW RMSE
+model_5_rmse <- RMSE(predicted_ratings2, validation$rating)
+rmse_results <- bind_rows(rmse_results, 
+                          data_frame(method = "Genre + Regulraized Movie + User Effects Model",
+                                     RMSE = model_5_rmse))
+
+```
+
+
+
+Despite diminishing returns, we do see a decrease in RMSE of $\approx 0.0004$. To finish, we incorporate time effects.  However, before we do so, we need to note that timestamp is a number representing the number of minute since 01-01-1970 00:00.  Note that we need to reduce the granularity of such a variable, since each particular timestamp will be associated with a small number of ratings, which we observe after computing the number of distinct timestamps and the total numer of observations we are considering.
+
+```{r timestamp number of ratings, echo=FALSE}
+number_of_distinct_timestamps <- length(unique(edx$timestamp))
+number_of_observations <- length(edx$timestamp)
+tsdf <- data.frame(number_of_distinct_timestamps = number_of_distinct_timestamps, number_of_observations = number_of_observations)
+tsdf %>% knitr::kable()
+
+#histogram(edx$timestamp)
+```
+
+Hence, the granularity of the time effect is by week.  Further, observe that the new residual histogram is again essentially the same as before.  
+
+```{r time effects, echo=FALSE}
+
+#CONVERT TO DATETIME FOR PREPARATION OF THE ROUND_DATE FUNCTION
+edx <- mutate(edx, date = as_datetime(timestamp))
+validation <- mutate(validation, date = as_datetime(timestamp))
+
+#CRATE NEW VARIABLE - WEEK - USING ROUND_DATE
+edx <- edx %>% mutate(week = as.numeric(round_date(date, unit= "week"))) 
+validation <- validation %>% mutate(week = as.numeric(round_date(date, unit= "week"))) 
+
+#CREATE TIME EFFECTS RANDOM VARIABLE
+weekly_avgs <- edx %>%
+  left_join(movie_reg, by = 'movieId') %>%
+  left_join(user_reg, by = 'userId') %>%
+  left_join(genre_avgs, by = 'genres') %>%
+  group_by(week) %>%
+  summarize(d_ui = mean(rating - mu - bhat_i - bhat_u - g_ui))
+  
+#EVALUATE MOVIE + USER + GENRE + TIME EFFECTS MODEL
+  predicted_ratings_mugt <- validation %>%
+    left_join(movie_reg, by = 'movieId') %>%
+    left_join(user_reg, by='userId') %>%
+    left_join(genre_avgs, by = 'genres') %>%
+    left_join(weekly_avgs, by = 'week') %>%
+    mutate(pred = mu + bhat_i + bhat_u + g_ui + d_ui) %>%
+    .$pred
+  
+  model_6_rmse <- RMSE(predicted_ratings_mugt, validation$rating)
+  rmse_results <- bind_rows(rmse_results, 
+                            data_frame(method = "Movie + User + Genre + Time Effects Model",
+                                       RMSE = model_6_rmse))
+#Residual histogram
+#residual3 <- predicted_ratings_mugt - validation$rating
+#histogram(residual3)
+```
+
+## Results
+
+Finally, we compare the RMSE of each random-effects model to determine the best model, and if this model is satisfactory.  
+
+```{r validation RMSE check, echo=FALSE}
+rmse_results %>% knitr::kable()
+```
+
+We see that for $d_{u,i}$ denoting the random variable associated with the average rating of movie $u$ by user $i$ during a given week, the best performing model of the three is model 3:
+\[Y_{u,i} \approx \mu + \hat{b_u}(\lambda) + \hat{b_i}(\lambda) + g_{u,i} + d_{u,i}.\]
+Here, the RMSE is 0.86495722., which is well below the target RMSE of 0.87750.  
+
+Now, note that the author has considered generative model techniques as well.  However, using Naive Bayes thus far has been unable to yield a model with RMSE below 1.1 and accuracy greater than 35%.  
+
+## Conclusion
+
+In conclusion, we have shown that a random-effects modeling approach is most appropriate given the data we have to work with.  We have generated a model which meets the initial goal of having the predictive power where the RMSE is below 0.8775.  
+
+There is room for further improvement in this model.  The author would like to eventually try ensemble models, where regression and is done on smaller and more computable subsets.  
