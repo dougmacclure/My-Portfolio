@@ -77,16 +77,15 @@ Various MATLAB projects are included, including an LU-decomposition algorithm, N
 Various UNIX shell scripts and C++ code for various server administrative tasks.
 
 1) Assign12 - Build a TCP server that is designed to handle multiple requests for directory access of a specified path.  Client is able to list directory contents and view file contents.
-2) Assign11 - Build a UDP program which accesses a credit card server, sends it a credit card transaction and receives a message from the server.
-3) Assign10 - Create a pipe shell where within a loop, we query the user for two commands which are piped together with resulting output printed to cout
-4) Assign9  - A program which emulates the UNIX command "tee".  It takes input from standard input and copies it into multiple files.
-5) Assign8 and Assign7  - An awk script which is used to process a sales report log, and prints total sales for each employee
-6) Assign6 - UNIX script for four commands:  
+2) Assign10 - Create a pipe shell where within a loop, we query the user for two commands which are piped together with resulting output printed to cout
+3) Assign9  - A program which emulates the UNIX command "tee".  It takes input from standard input and copies it into multiple files.
+4) Assign8 and Assign7  - An awk script which is used to process a sales report log, and prints total sales for each employee
+5) Assign6 - UNIX script for four commands:  
   a) new -    Allows user to create a new database
   b) add -    Allows user to add new records into database file
   c) show -   Allows user to view specific records within database
   d) delete - Allows user to remove records from database
-7) Assign5 - A UNIX Spell-Checker bash script
+6) Assign5 - A UNIX Spell-Checker bash script
 
 
 # Intermediate C++ Programs
